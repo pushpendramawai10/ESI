@@ -7,7 +7,72 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Favicon --><link rel="icon" href="data:image/png;base64,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" alt="Elite Science Institute Logo" class="h-10 w-10 mr-2">
+    <!-- Favicon --><link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAVDSURBVHhe7ZxrbxxVFMd/t3t6D+d4bM947Ni+SSdJmwYSCiFBKaWNSkAQEChIEaoP1IcqVSsCIaKqghQk+gNVJVS0f4CU+gNCkRD1AVLVAwklEBINlMRJ+3Ls2B6v57Eze3rXvT1daSckTuwknbY++JNkluyZ+f/cmTln5s4qYRiGYRiGYRiGYRiGYZg/g1pLS8t2sVi8A/g4y/qAcZkXwJ8A7k/K52rL1L2xsaEvAP/k/C53e3s72d/b24uqqqp+hPwgxL4I/tKSc+Ul5e39PDwsFtaWj4F/j/wTZYtA3BtbW13bW1t+fT09JdLS0uPk7wYkC8CPlL9+fn5aRzH23KcZ+U3ge+z/AbwJ/A06AdYlj0L/G/gI4BT8WnZWV1dveXh4eHj4+MfA/8GvAt8yvppYBnwD+BrAGfjt+B7wF4An1N+Ffg3AP0A1wC/Bb4G/B/wY2r75G7vAD4CvD0L/sX+f8DX3wD/GHgd+DvA3wP/DPg49c1T+94G/gr4J/s9P4b/Jvb/mPQrJd2S5fM5AEv/vW3b/l5eXt4I/C57I8sHga+T/L9kQ+h1gN9SviwA/b7/t7a2/r+wsHBfX19/BnwI/CbwF8A32TdgX2XbANyV3gGchX+BfQC+SXn/x9c3gF+B3/J/N+DX1DdP7Xsb+CfgG/Z7Pgj/Tez/QejX2P6PqP0N4D3gL4HPG/AfcL6npgf4S3rG81dbsN+lX2T/GvA/gE/Y/gL2t5L8D8Cfqe2T/f/P2H9Qf69+jP0v5H9P23/I/pL9R2zzP4A/rWP0P8p+F/BbSvYv5Tf1D+qfCvxT/Wf1H9O/Z//R/VvD/t/Vf0r/wH6L/W/W/3n9K5/A/1H/Qf1/6F/49G8R/5Vl/0s/178Z/11K/tL+s1r279Q/rN+y/4X9v/Un+V/Qv1R/Ffs1/Zvq37L/pP0e/R/1v/T/pv/V/5T+Z5R8Jv/j/G0s+V/+WfVvrX/B/i/r/7H+P5L9G/ov6B/Qf+b/Bv/36J+h/0D/K/3P8j/TvyB/n/7J/j9S/q/pX/I/yv9v/Zf2N/Wf0H9D/4n+h/Vf2J/Wf+b/m/TP+a/U/S/7a/xf5/VfV+Ff+V/Gf2V+yfVv+v6B/4v7D+t/V/Vf8J/Zf8b+3f8X9J/2D/P/sf1f8y/Wv2P1HyXvaf1f9W/W/VP2h/3P5v/N+y/4b9JfsL+9/S/8r+t+T9Kv9r9p/Q/6D/R/qf4l/V/0H/oP5r+d/Uf5P/3fpf5R8k76V/Sv9A/Uv8i/Sf1D/V/7X636r/hP0j+2v2v8R/V/R/yv8k+0f6B/S/sP8i/Rf2P1f/C/uv1H+s/zL931L+9+wv6V/Uv5Tf1T+u/6n+pfsfqP9D/4/0X9J/0P9K/33+V/T/1b8A/1dK9u/UP6rfov+V/T/1J/n/y/4B+zfUv1l/MftL+l/q37D/pP0e/V/sf6B/Bv/H9N/G/3lKPiP/vP5f5H8s/8vq/83/m/rfWPdv+0/Qv6N/Wf+R/Uf239C/Yf9Z/7P+U/3vVv+7lfzv61/Jv5H/Vfq/pX95/yn7m+qv8v/R/yr99/Vvq3/D/l/Sv2L/5/W/R/9X+x/Uv6h/Xv/7lf039R8k76v/x/pfpP8n/V/yP8y/Tv94/lf231T/Vfo31J/bf8b+qfpfqv9Z/zX95/pf5H85/c/1X9S/Sv+N/Tv1T+yfpP8A/736h/Vf2v/N/ov6n+L/0v8h/XvqH9D/A/yflL/Vf1f/BfqX63+n/3lKPi/29/Svqv9e/Vv1j/Qfq3+3/pv879P/Av8V/J+l/3l+9+wv8J9T/q3+m/U/wH+j/63+31Xv/fV/wH9r+zfp36A/F36h/VfsP/X/2H9+1b+DfqvVb/D/u/rX63+Qfpfsv+u+r/3/Vv69+zvqf+K/h/8J/T/VP+K/h/9H/Sv0P8y/Y/yn1l/NfsV/G8R/5Vl/yv7N/SvUP9d/Xv2P1H/C/ov7B+n/2l9d6/5X9B/W/2D+nfov1p/rP6jlfzt7W/oH7D/W32//A/7B+S/Uf8A/rWV/R/Qf8X+Ffo/rP9F/Sv1j+xfo/9l/Uf2D1Hyh/WvVP+v/xclv9J+T/+/lf2l/Qv676b/1/7P1f9H/z/S/wT1/wf8f/g/V39L/Vfq+4h+n6V8H2c5/rM/0X9M/tL+X/RfVP+R/bf2f/2L+n/79e0vU/0v2R+h/0H/K/1/W/9B/T/0v+LkV/C/zP/v6T/Zf43W/1/W/4jlfwh+8/yP2T/Q/yv7H9X/+uP/0A9J+yfqP9W/z7S/g313zD+A4RhGIZhGIZhGIZhGIZhGJrTfwI7o1u2yH3yAAAAAElFTkSuQmCC" type="image/png">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #374151; /* text-gray-700 */
+        }
+        .hero-section {
+            background-image: linear-gradient(rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.7)), url('https://placehold.co/1600x800/1f2937/ffffff?text=Future+of+Science');
+            background-size: cover;
+            background-position: center;
+        }
+        .course-card, .news-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e5e7eb; /* border-gray-200 */
+        }
+        .course-card:hover, .news-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .modal-backdrop {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-content {
+            transition: transform 0.3s ease-in-out;
+        }
+        .toast-notification {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .tab-button {
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        .tab-button.active {
+            color: #1d4ed8; /* text-blue-700 */
+            border-bottom-color: #1d4ed8; /* border-blue-700 */
+        }
+        .section-title {
+            color: #111827; /* text-gray-900 */
+        }
+        .section-subtitle {
+            color: #4b5563; /* text-gray-600 */
+        }
+        .buy-now-btn {
+            background-color: #ca8a04; /* amber-500 */
+        }
+        .buy-now-btn:hover {
+            background-color: #a16207; /* amber-600 */
+        }
+        .profile-dropdown-item {
+            transition: background-color 0.2s ease-in-out;
+        }
+        .profile-dropdown-item:hover {
+            background-color: #f3f4f6; /* gray-100 */
+        }
+        #profile-dropdown {
+            transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <!-- Header & Navigation --><header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-slate-800 flex items-center">
+                    <img src="data:image/png;base64,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" alt="Elite Science Institute Logo" class="h-10 w-10 mr-2">
                     <span>Elite Science Institute</span>
                 </a>
                 
@@ -23,8 +88,8 @@
                         <i class="fas fa-sign-in-alt"></i>
                         <span>Login / Sign Up</span>
                     </button>
-                    <div id="user-profile" class="hidden relative group">
-                        <div class="flex flex-col items-center cursor-pointer text-center">
+                    <div id="user-profile" class="hidden relative">
+                        <div id="user-profile-trigger" class="flex flex-col items-center cursor-pointer text-center">
                             <div class="w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center overflow-hidden border-2 border-slate-300" id="avatar-container">
                                 <img id="user-avatar" class="w-full h-full object-cover hidden" alt="User Avatar">
                                 <i id="user-icon" class="fas fa-user text-2xl text-slate-500"></i>
@@ -32,7 +97,7 @@
                             </div>
                             <span id="user-display-name" class="text-xs text-slate-700 font-semibold mt-1 max-w-[120px] truncate"></span>
                         </div>
-                        <div class="absolute top-full right-0 mt-2 w-56 bg-white rounded-md shadow-lg py-1 z-20 hidden group-hover:block">
+                        <div id="profile-dropdown" class="absolute top-full right-0 mt-2 w-56 bg-white rounded-md shadow-lg py-1 z-20 hidden opacity-0 transform scale-95">
                             <div id="verification-status" class="px-4 py-2 border-b hidden">
                                 <p class="text-xs text-yellow-800 bg-yellow-100 p-2 rounded-md">Email not verified.</p>
                                 <button id="resend-verification-btn" class="text-xs text-blue-600 hover:underline mt-1">Resend link</button>
@@ -111,7 +176,7 @@
                             <h3 class="text-xl font-bold text-slate-800 mb-2">CSIR-UGC NET/JRF</h3>
                             <p class="text-base mb-4 flex-grow">A comprehensive program covering all units of Life Sciences syllabus for the prestigious CSIR-UGC NET exam.</p>
                             <p class="text-3xl font-bold text-blue-700 mb-6">₹25,000</p>
-                            <button class="buy-now-btn mt-auto w-full text-white py-3 rounded-lg font-semibold transition duration-300 text-lg">Buy Now</button>
+                            <button class="buy-now-btn mt-auto w-full text-white py-3 rounded-lg font-semibold transition duration-300 text-lg" data-course="CSIR-UGC NET/JRF" data-amount="25000">Buy Now</button>
                         </div>
                     </div>
                     
@@ -463,11 +528,12 @@
         const mobileLoginBtn = document.getElementById('mobile-login-btn');
         const logoutBtn = document.getElementById('logout-btn');
         const userProfile = document.getElementById('user-profile');
+        const userProfileTrigger = document.getElementById('user-profile-trigger');
+        const profileDropdown = document.getElementById('profile-dropdown');
         const userDisplayName = document.getElementById('user-display-name');
         const userAvatar = document.getElementById('user-avatar');
         const userIcon = document.getElementById('user-icon');
         const avatarSpinner = document.getElementById('avatar-spinner');
-        const avatarContainer = document.getElementById('avatar-container');
         const avatarUploadInput = document.getElementById('avatar-upload');
         const verificationStatus = document.getElementById('verification-status');
         const resendVerificationBtn = document.getElementById('resend-verification-btn');
@@ -533,6 +599,33 @@
             }
         });
 
+        // Profile Dropdown Logic
+        userProfileTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isHidden = profileDropdown.classList.contains('hidden');
+            if (isHidden) {
+                profileDropdown.classList.remove('hidden');
+                setTimeout(() => {
+                    profileDropdown.classList.remove('opacity-0', 'scale-95');
+                }, 10);
+            } else {
+                profileDropdown.classList.add('opacity-0', 'scale-95');
+                setTimeout(() => {
+                    profileDropdown.classList.add('hidden');
+                }, 200);
+            }
+        });
+
+        window.addEventListener('click', () => {
+            if (!profileDropdown.classList.contains('hidden')) {
+                profileDropdown.classList.add('opacity-0', 'scale-95');
+                setTimeout(() => {
+                    profileDropdown.classList.add('hidden');
+                }, 200);
+            }
+        });
+
+
         const updateAuthView = () => {
             showMessage('');
             fullNameContainer.classList.add('hidden');
@@ -587,7 +680,7 @@
                 mobileLoginBtn.textContent = 'Logged In';
                 mobileLoginBtn.disabled = true;
                 userProfile.classList.remove('hidden');
-                userProfile.classList.add('flex');
+                userProfile.classList.add('relative'); // Ensure it's a positioning context
                 userDisplayName.textContent = user.displayName || user.email;
 
                 if (user.photoURL) {
@@ -610,7 +703,7 @@
                 mobileLoginBtn.textContent = 'Login / Sign Up';
                 mobileLoginBtn.disabled = false;
                 userProfile.classList.add('hidden');
-                userProfile.classList.remove('flex');
+                userProfile.classList.remove('relative');
                 userDisplayName.textContent = '';
                 sessionStorage.removeItem('verificationToastShown');
             }
@@ -639,7 +732,14 @@
 
         // --- Firebase Auth Logic ---
         onAuthStateChanged(auth, (user) => {
-            updateUIForLogin(user);
+            // Reload user to get latest emailVerified state
+            if (user) {
+                user.reload().then(() => {
+                    updateUIForLogin(auth.currentUser);
+                });
+            } else {
+                 updateUIForLogin(null);
+            }
         });
 
         logoutBtn.addEventListener('click', () => {
@@ -686,7 +786,7 @@
                 signInWithEmailAndPassword(auth, email, password)
                     .then((userCredential) => {
                         if(!userCredential.user.emailVerified) {
-                            showToast('Please verify your email to access all features.', 'info');
+                           // The onAuthStateChanged will handle showing the verification status in the dropdown
                         }
                         showMessage('Login successful!', 'success');
                         setTimeout(closeModal, 1500);
@@ -723,7 +823,6 @@
 
             const storageRef = ref(storage, `profile_pictures/${currentUser.uid}`);
             
-            // Show spinner
             userIcon.classList.add('hidden');
             userAvatar.classList.add('hidden');
             avatarSpinner.classList.remove('hidden');
@@ -741,7 +840,6 @@
                 console.error("Error uploading profile picture: ", error);
                 showToast('Failed to update picture.', 'error');
                 avatarSpinner.classList.add('hidden');
-                // Show original avatar or icon
                  if (currentUser.photoURL) {
                     userAvatar.classList.remove('hidden');
                 } else {
@@ -883,3 +981,19 @@
     </script>
 </body>
 </html>
+" and update it to a new version.
+I have not got any otp to verify my email Id.
+
+" code between  and  in the most up-to-date Canvas "Elite Science Institute Website" document above and am asking a query about/based on this code below.
+Instructions to follow:
+  * Don't output/edit the document if the query is Direct/Simple. For example, if the query asks for a simple explanation, output a direct answer.
+  * Make sure to **edit** the document if the query shows the intent of editing the document, in which case output the entire edited document, **not just that section or the edits**.
+    * Don't output the same document/empty document and say that you have edited it.
+    * Don't change unrelated code in the document.
+  * Don't output  and  in your final response.
+  * Any references like "this" or "selected code" refers to the code between  and  tags.
+  * Just acknowledge my request in the introduction.
+  * Make sure to refer to the document as "Canvas" in your response.
+
+But my only concern is that user should not be able to sign up before verifying email
+
