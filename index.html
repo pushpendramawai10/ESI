@@ -12,20 +12,21 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            color: #374151; /* text-gray-700 */
         }
         .hero-section {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1600x800/2c3e50/ffffff?text=Elite+Campus');
+            background-image: linear-gradient(rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.7)), url('https://placehold.co/1600x800/1f2937/ffffff?text=Future+of+Science');
             background-size: cover;
             background-position: center;
         }
-        .course-card {
+        .course-card, .news-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e5e7eb; /* border-gray-200 */
         }
-        .course-card:hover {
-            transform: translateY(-10px);
+        .course-card:hover, .news-card:hover {
+            transform: translateY(-8px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
-        /* Custom modal styles */
         .modal-backdrop {
             transition: opacity 0.3s ease-in-out;
         }
@@ -39,85 +40,100 @@
             transition: color 0.3s ease, border-color 0.3s ease;
         }
         .tab-button.active {
-            color: #2563eb; /* text-blue-600 */
-            border-bottom-color: #2563eb; /* border-blue-600 */
+            color: #1d4ed8; /* text-blue-700 */
+            border-bottom-color: #1d4ed8; /* border-blue-700 */
         }
+        .section-title {
+            color: #111827; /* text-gray-900 */
+        }
+        .section-subtitle {
+            color: #4b5563; /* text-gray-600 */
+        }
+        .buy-now-btn {
+            background-color: #ca8a04; /* amber-500 */
+        }
+        .buy-now-btn:hover {
+            background-color: #a16207; /* amber-600 */
+        }
+        
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-slate-50">
 
     <!-- Header & Navigation --><header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-3">
+        <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <a href="#" class="text-2xl font-bold text-blue-800 flex items-center">
+                <a href="#" class="text-2xl font-bold text-slate-800 flex items-center">
                     <img src="data:image/png;base64,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" alt="Elite Science Institute Logo" class="h-10 w-10 mr-2">
                     <span>Elite Science Institute</span>
                 </a>
                 
-                <!-- Desktop Menu --><div class="hidden md:flex items-center space-x-4">
-                    <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
-                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition duration-300">About Us</a>
-                    <a href="#courses" class="text-gray-600 hover:text-blue-600 transition duration-300">Courses</a>
-                    <a href="#test-series" class="text-gray-600 hover:text-blue-600 transition duration-300">Test Series</a>
-                    <a href="#phd" class="text-gray-600 hover:text-blue-600 transition duration-300">PhD Positions</a>
-                    <a href="#news" class="text-gray-600 hover:text-blue-600 transition duration-300">News</a>
-                    <a href="#contact" class="text-gray-600 hover:text-blue-600 transition duration-300">Contact</a>
-                    <button id="login-btn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center space-x-2">
+                <!-- Desktop Menu --><div class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">Home</a>
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">About Us</a>
+                    <a href="#courses" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">Courses</a>
+                    <a href="#test-series" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">Test Series</a>
+                    <a href="#phd" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">PhD Positions</a>
+                    <a href="#news" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">News</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">Contact</a>
+                    <button id="login-btn" class="bg-blue-700 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-blue-800 transition-all duration-300 flex items-center space-x-2 shadow-sm hover:shadow-md">
                         <i class="fas fa-sign-in-alt"></i>
                         <span>Login / Sign Up</span>
                     </button>
-                    <div id="user-profile" class="hidden items-center space-x-2">
-                         <i class="fas fa-user-circle text-2xl text-green-500"></i>
-                         <span id="user-email" class="text-gray-700 font-medium text-sm"></span>
-                         <button id="logout-btn" class="text-sm text-red-500 hover:underline">(Logout)</button>
+                    <div id="user-profile" class="hidden items-center space-x-3">
+                         <i class="fas fa-user-circle text-3xl text-green-500"></i>
+                         <div class="text-sm">
+                            <span id="user-email" class="text-slate-700 font-semibold block"></span>
+                            <button id="logout-btn" class="text-xs text-red-600 hover:underline">Logout</button>
+                         </div>
                     </div>
                 </div>
 
                 <!-- Mobile Menu Button --><div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+                    <button id="mobile-menu-button" class="text-slate-700 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Mobile Menu --><div id="mobile-menu" class="hidden md:hidden mt-4">
-                <a href="#" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Home</a>
-                <a href="#about" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">About Us</a>
-                <a href="#courses" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Courses</a>
-                <a href="#test-series" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Test Series</a>
-                <a href="#phd" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">PhD Positions</a>
-                <a href="#news" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">News</a>
-                <a href="#contact" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Contact</a>
-                <button id="mobile-login-btn" class="w-full mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Login / Sign Up</button>
+            <!-- Mobile Menu --><div id="mobile-menu" class="hidden md:hidden mt-4 border-t pt-4">
+                <a href="#" class="block py-2.5 px-4 text-base text-slate-700 hover:bg-slate-100 rounded-md">Home</a>
+                <a href="#about" class="block py-2.5 px-4 text-base text-slate-700 hover:bg-slate-100 rounded-md">About Us</a>
+                <a href="#courses" class="block py-2.5 px-4 text-base text-slate-700 hover:bg-slate-100 rounded-md">Courses</a>
+                <a href="#test-series" class="block py-2.5 px-4 text-base text-slate-700 hover:bg-slate-100 rounded-md">Test Series</a>
+                <a href="#phd" class="block py-2.5 px-4 text-base text-slate-700 hover:bg-slate-100 rounded-md">PhD Positions</a>
+                <a href="#news" class="block py-2.5 px-4 text-base text-slate-700 hover:bg-slate-100 rounded-md">News</a>
+                <a href="#contact" class="block py-2.5 px-4 text-base text-slate-700 hover:bg-slate-100 rounded-md">Contact</a>
+                <button id="mobile-login-btn" class="w-full mt-3 bg-blue-700 text-white px-4 py-3 rounded-lg font-semibold hover:bg-blue-800 transition duration-300">Login / Sign Up</button>
             </div>
         </nav>
     </header>
 
     <!-- Main Content --><main>
         <!-- Hero Section --><section class="hero-section text-white">
-            <div class="container mx-auto px-6 py-32 text-center">
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Shaping the Future of Science Professionals</h1>
-                <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl mx-auto">Your journey to a successful career in life sciences and biotechnology begins here. Join Elite Science Institute to achieve your academic goals.</p>
-                <a href="#courses" class="bg-white text-blue-800 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300">Explore Our Courses</a>
+            <div class="container mx-auto px-6 py-32 md:py-48 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4">Shaping the Future of Science Professionals</h1>
+                <p class="text-lg md:text-xl text-slate-200 mb-8 max-w-3xl mx-auto">Your journey to a successful career in life sciences and biotechnology begins here. Join Elite Science Institute to achieve your academic goals.</p>
+                <a href="#courses" class="bg-amber-500 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-amber-600 transition duration-300 transform hover:scale-105 shadow-lg">Explore Our Courses</a>
             </div>
         </section>
 
-        <!-- About Us Section --><section id="about" class="py-20 bg-white">
+        <!-- About Us Section --><section id="about" class="py-20 md:py-24 bg-white">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">About Elite Science Institute</h2>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Pioneering excellence in life science coaching since 2005.</p>
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title">About Elite Science Institute</h2>
+                    <p class="section-subtitle mt-4 max-w-2xl mx-auto text-lg">Pioneering excellence in life science coaching since 2005.</p>
                 </div>
                 <div class="flex flex-col md:flex-row items-center gap-12">
                     <div class="md:w-1/2">
-                        <img src="https://placehold.co/600x400/e2e8f0/334155?text=Our+Mission" alt="About Us Image" class="rounded-lg shadow-xl">
+                        <img src="https://placehold.co/600x400/e2e8f0/334155?text=Our+Mission" alt="About Us Image" class="rounded-xl shadow-xl w-full">
                     </div>
                     <div class="md:w-1/2">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Vision & Mission</h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
+                        <h3 class="text-2xl font-semibold text-slate-800 mb-4">Our Vision & Mission</h3>
+                        <p class="text-lg mb-4 leading-relaxed">
                             Elite Science Institute was founded with the mission to provide unparalleled coaching for students aspiring to excel in competitive exams like CSIR-UGC-NET/JRF, DBT-JRF, ICMR-JRF, and IIT-JAM. We believe in building a strong conceptual foundation.
                         </p>
-                        <p class="text-gray-600 leading-relaxed">
+                        <p class="text-lg leading-relaxed">
                             Our vision is to be the most trusted name in life science education, known for our dedicated faculty, comprehensive study material, and a proven track record of success. We are committed to nurturing the scientific minds of tomorrow.
                         </p>
                     </div>
@@ -125,178 +141,182 @@
             </div>
         </section>
 
-        <!-- Courses Section --><section id="courses" class="py-20">
+        <!-- Courses Section --><section id="courses" class="py-20 md:py-24 bg-slate-50">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Our Premier Courses</h2>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Comprehensive programs designed for guaranteed success.</p>
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title">Our Premier Courses</h2>
+                    <p class="section-subtitle mt-4 max-w-2xl mx-auto text-lg">Comprehensive programs designed for guaranteed success.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     
-                    <!-- Course Card 1 --><div class="course-card bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                    <!-- Course Card 1 --><div class="course-card bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
                         <img src="https://placehold.co/400x250/3b82f6/ffffff?text=CSIR-UGC+NET/JRF" alt="CSIR-UGC NET/JRF" class="w-full h-48 object-cover">
                         <div class="p-6 flex-grow flex flex-col">
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">CSIR-UGC NET/JRF</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">A comprehensive program covering all units of Life Sciences syllabus for the prestigious CSIR-UGC NET exam.</p>
-                            <p class="text-2xl font-bold text-blue-700 mb-4">₹25,000</p>
-                            <button class="buy-now-btn mt-auto w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition duration-300" data-course="CSIR-UGC NET/JRF" data-amount="25000">Buy Now</button>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">CSIR-UGC NET/JRF</h3>
+                            <p class="text-base mb-4 flex-grow">A comprehensive program covering all units of Life Sciences syllabus for the prestigious CSIR-UGC NET exam.</p>
+                            <p class="text-3xl font-bold text-blue-700 mb-6">₹25,000</p>
+                            <button class="buy-now-btn mt-auto w-full text-white py-3 rounded-lg font-semibold transition duration-300 text-lg">Buy Now</button>
                         </div>
                     </div>
                     
-                    <!-- Course Card 2 --><div class="course-card bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                    <!-- Course Card 2 --><div class="course-card bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
                         <img src="https://placehold.co/400x250/10b981/ffffff?text=IIT-JAM+Biotech" alt="IIT-JAM Biotechnology" class="w-full h-48 object-cover">
                         <div class="p-6 flex-grow flex flex-col">
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">IIT-JAM Biotechnology</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Specialized coaching for the IIT-JAM Biotechnology entrance, paving your way to top MSc programs in India.</p>
-                             <p class="text-2xl font-bold text-blue-700 mb-4">₹18,000</p>
-                            <button class="buy-now-btn mt-auto w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition duration-300" data-course="IIT-JAM Biotechnology" data-amount="18000">Buy Now</button>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">IIT-JAM Biotechnology</h3>
+                            <p class="text-base mb-4 flex-grow">Specialized coaching for the IIT-JAM Biotechnology entrance, paving your way to top MSc programs in India.</p>
+                             <p class="text-3xl font-bold text-blue-700 mb-6">₹18,000</p>
+                            <button class="buy-now-btn mt-auto w-full text-white py-3 rounded-lg font-semibold transition duration-300 text-lg" data-course="IIT-JAM Biotechnology" data-amount="18000">Buy Now</button>
                         </div>
                     </div>
 
-                    <!-- Course Card 3 --><div class="course-card bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                    <!-- Course Card 3 --><div class="course-card bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
                         <img src="https://placehold.co/400x250/8b5cf6/ffffff?text=DBT-JRF" alt="DBT-JRF" class="w-full h-48 object-cover">
                         <div class="p-6 flex-grow flex flex-col">
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">DBT-JRF Program</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Focused preparation for the DBT-JRF examination, unlocking opportunities in top research institutions.</p>
-                             <p class="text-2xl font-bold text-blue-700 mb-4">₹22,000</p>
-                            <button class="buy-now-btn mt-auto w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition duration-300" data-course="DBT-JRF Program" data-amount="22000">Buy Now</button>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">DBT-JRF Program</h3>
+                            <p class="text-base mb-4 flex-grow">Focused preparation for the DBT-JRF examination, unlocking opportunities in top research institutions.</p>
+                             <p class="text-3xl font-bold text-blue-700 mb-6">₹22,000</p>
+                            <button class="buy-now-btn mt-auto w-full text-white py-3 rounded-lg font-semibold transition duration-300 text-lg" data-course="DBT-JRF Program" data-amount="22000">Buy Now</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Test Series Section --><section id="test-series" class="py-20 bg-white">
+        <!-- Test Series Section --><section id="test-series" class="py-20 md:py-24 bg-white">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Test Series</h2>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Evaluate your preparation with our comprehensive test series.</p>
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title">Online Test Series</h2>
+                    <p class="section-subtitle mt-4 max-w-2xl mx-auto text-lg">Evaluate your preparation with our comprehensive test series, designed to mirror the actual exam.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="course-card bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                    <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
                         <img src="https://placehold.co/400x250/f59e0b/ffffff?text=All+India+Mock+Test" alt="All India Mock Test" class="w-full h-48 object-cover">
                         <div class="p-6 flex-grow flex flex-col">
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">All India Mock Test</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Experience the real exam environment with our All India level mock tests.</p>
-                            <p class="text-2xl font-bold text-blue-700 mb-4">₹1,500</p>
-                            <button class="buy-now-btn mt-auto w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition duration-300" data-course="All India Mock Test" data-amount="1500">Buy Now</button>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">All India Mock Test</h3>
+                            <p class="text-base mb-4 flex-grow">Experience the real exam environment with our All India level mock tests and detailed performance analysis.</p>
+                            <p class="text-3xl font-bold text-blue-700 mb-6">₹1,500</p>
+                            <button class="buy-now-btn mt-auto w-full text-white py-3 rounded-lg font-semibold transition duration-300 text-lg" data-course="All India Mock Test" data-amount="1500">Buy Now</button>
                         </div>
                     </div>
-                    <div class="course-card bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                    <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
                         <img src="https://placehold.co/400x250/ec4899/ffffff?text=Topic-wise+Tests" alt="Topic-wise Tests" class="w-full h-48 object-cover">
                         <div class="p-6 flex-grow flex flex-col">
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Topic-wise Tests</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Strengthen your concepts with tests focused on individual topics.</p>
-                             <p class="text-2xl font-bold text-blue-700 mb-4">₹2,500</p>
-                            <button class="buy-now-btn mt-auto w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition duration-300" data-course="Topic-wise Tests" data-amount="2500">Buy Now</button>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Topic-wise Tests</h3>
+                            <p class="text-base mb-4 flex-grow">Strengthen your concepts with an extensive bank of tests focused on individual topics from the syllabus.</p>
+                             <p class="text-3xl font-bold text-blue-700 mb-6">₹2,500</p>
+                            <button class="buy-now-btn mt-auto w-full text-white py-3 rounded-lg font-semibold transition duration-300 text-lg" data-course="Topic-wise Tests" data-amount="2500">Buy Now</button>
                         </div>
                     </div>
-                    <div class="course-card bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                    <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
                         <img src="https://placehold.co/400x250/ef4444/ffffff?text=Previous+Year+Papers" alt="Previous Year Papers" class="w-full h-48 object-cover">
                         <div class="p-6 flex-grow flex flex-col">
-                            <h3 class="text-xl font-bold text-gray-800 mb-2">Previous Year Papers</h3>
-                            <p class="text-gray-600 mb-4 flex-grow">Practice with solved papers from previous years to understand the pattern.</p>
-                             <p class="text-2xl font-bold text-blue-700 mb-4">₹1,000</p>
-                            <button class="buy-now-btn mt-auto w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition duration-300" data-course="Previous Year Papers" data-amount="1000">Buy Now</button>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Previous Year Papers</h3>
+                            <p class="text-base mb-4 flex-grow">Practice with an exhaustive collection of solved papers from previous years to understand the exam pattern.</p>
+                             <p class="text-3xl font-bold text-blue-700 mb-6">₹1,000</p>
+                            <button class="buy-now-btn mt-auto w-full text-white py-3 rounded-lg font-semibold transition duration-300 text-lg" data-course="Previous Year Papers" data-amount="1000">Buy Now</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PhD Positions Section --><section id="phd" class="py-20">
+        <!-- PhD Positions Section --><section id="phd" class="py-20 md:py-24 bg-slate-50">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">PhD Positions</h2>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Explore PhD opportunities in India and around the world.</p>
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title">PhD Positions</h2>
+                    <p class="section-subtitle mt-4 max-w-2xl mx-auto text-lg">Explore curated PhD opportunities in India and around the world.</p>
                 </div>
                 <div class="max-w-4xl mx-auto">
-                    <div class="border-b border-gray-200 mb-4">
+                    <div class="border-b border-gray-300 mb-6">
                         <nav class="flex space-x-8" aria-label="Tabs">
-                            <button class="tab-button phd-tab-button whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg text-gray-500 border-transparent active" data-tab="india">India</button>
-                            <button class="tab-button phd-tab-button whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg text-gray-500 border-transparent" data-tab="abroad">Abroad</button>
+                            <button class="tab-button phd-tab-button whitespace-nowrap pb-4 px-1 border-b-2 font-semibold text-lg text-gray-500 border-transparent active" data-tab="india">India</button>
+                            <button class="tab-button phd-tab-button whitespace-nowrap pb-4 px-1 border-b-2 font-semibold text-lg text-gray-500 border-transparent" data-tab="abroad">Abroad</button>
                         </nav>
                     </div>
                     <div id="phd-india" class="phd-tab-content space-y-4">
-                        <!-- Position 1 -->
-                        <div class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+                        <div class="bg-white p-5 rounded-xl shadow-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div>
-                                <h4 class="font-bold text-lg">Indian Institute of Science (IISc), Bangalore</h4>
-                                <p class="text-gray-600">Area: Molecular Biology</p>
+                                <h4 class="font-bold text-lg text-slate-800">Indian Institute of Science (IISc), Bangalore</h4>
+                                <p class="text-gray-600">Area: Molecular Biology & Genetics</p>
                             </div>
-                            <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Apply Now</a>
+                            <a href="#" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition duration-300 whitespace-nowrap">Apply Now</a>
                         </div>
-                        <!-- Position 2 -->
-                        <div class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+                        <div class="bg-white p-5 rounded-xl shadow-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div>
-                                <h4 class="font-bold text-lg">Tata Institute of Fundamental Research (TIFR), Mumbai</h4>
-                                <p class="text-gray-600">Area: Neuroscience</p>
+                                <h4 class="font-bold text-lg text-slate-800">Tata Institute of Fundamental Research (TIFR), Mumbai</h4>
+                                <p class="text-gray-600">Area: Neuroscience & Cell Biology</p>
                             </div>
-                            <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Apply Now</a>
+                            <a href="#" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition duration-300 whitespace-nowrap">Apply Now</a>
                         </div>
                     </div>
                     <div id="phd-abroad" class="phd-tab-content space-y-4 hidden">
-                         <!-- Position 1 -->
-                        <div class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+                        <div class="bg-white p-5 rounded-xl shadow-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div>
-                                <h4 class="font-bold text-lg">Harvard University, USA</h4>
+                                <h4 class="font-bold text-lg text-slate-800">Harvard University, USA</h4>
                                 <p class="text-gray-600">Area: Genetics and Genomics</p>
                             </div>
-                            <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Apply Now</a>
+                            <a href="#" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition duration-300 whitespace-nowrap">Apply Now</a>
                         </div>
-                        <!-- Position 2 -->
-                        <div class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+                        <div class="bg-white p-5 rounded-xl shadow-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div>
-                                <h4 class="font-bold text-lg">Max Planck Institute, Germany</h4>
-                                <p class="text-gray-600">Area: Plant Biology</p>
+                                <h4 class="font-bold text-lg text-slate-800">Max Planck Institute, Germany</h4>
+                                <p class="text-gray-600">Area: Plant Biology & Epigenetics</p>
                             </div>
-                            <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Apply Now</a>
+                            <a href="#" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition duration-300 whitespace-nowrap">Apply Now</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Research News Section --><section id="news" class="py-20 bg-white">
+        <!-- Research News Section --><section id="news" class="py-20 md:py-24 bg-white">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Research News</h2>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Stay updated with the latest breakthroughs in science.</p>
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title">Research News</h2>
+                    <p class="section-subtitle mt-4 max-w-2xl mx-auto text-lg">Stay updated with the latest breakthroughs in the world of science.</p>
                 </div>
                  <div class="max-w-5xl mx-auto">
-                    <div class="border-b border-gray-200 mb-8">
+                    <div class="border-b border-gray-300 mb-8">
                         <nav class="flex space-x-8" aria-label="Tabs">
-                            <button class="tab-button news-tab-button whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg text-gray-500 border-transparent active" data-tab="daily">Daily</button>
-                            <button class="tab-button news-tab-button whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg text-gray-500 border-transparent" data-tab="weekly">Weekly</button>
-                            <button class="tab-button news-tab-button whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg text-gray-500 border-transparent" data-tab="monthly">Monthly</button>
+                            <button class="tab-button news-tab-button whitespace-nowrap pb-4 px-1 border-b-2 font-semibold text-lg text-gray-500 border-transparent active" data-tab="daily">Daily</button>
+                            <button class="tab-button news-tab-button whitespace-nowrap pb-4 px-1 border-b-2 font-semibold text-lg text-gray-500 border-transparent" data-tab="weekly">Weekly</button>
+                            <button class="tab-button news-tab-button whitespace-nowrap pb-4 px-1 border-b-2 font-semibold text-lg text-gray-500 border-transparent" data-tab="monthly">Monthly</button>
                         </nav>
                     </div>
                     <div id="news-daily" class="news-tab-content grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="news-card bg-white rounded-xl shadow-lg overflow-hidden">
                             <img src="https://placehold.co/600x400/34d399/ffffff?text=CRISPR+Advancement" class="w-full h-56 object-cover" alt="News Image">
                             <div class="p-6">
-                                <h3 class="font-bold text-xl mb-2">New CRISPR technique shows promise in gene editing</h3>
-                                <p class="text-gray-600 mb-4">Researchers have developed a new method that increases the efficiency of CRISPR-Cas9...</p>
+                                <h3 class="font-bold text-xl mb-2 text-slate-800">New CRISPR technique shows promise in gene editing</h3>
+                                <p class="text-gray-600 mb-4">Researchers have developed a new method that increases the efficiency and accuracy of CRISPR-Cas9...</p>
+                                <a href="#" class="text-blue-600 font-semibold hover:underline">Read More &rarr;</a>
+                            </div>
+                        </div>
+                         <div class="news-card bg-white rounded-xl shadow-lg overflow-hidden">
+                            <img src="https://placehold.co/600x400/f87171/ffffff?text=Cancer+Research" class="w-full h-56 object-cover" alt="News Image">
+                            <div class="p-6">
+                                <h3 class="font-bold text-xl mb-2 text-slate-800">Breakthrough in Early Cancer Detection</h3>
+                                <p class="text-gray-600 mb-4">A new blood test has been shown to detect multiple types of cancer at an early stage with high accuracy...</p>
                                 <a href="#" class="text-blue-600 font-semibold hover:underline">Read More &rarr;</a>
                             </div>
                         </div>
                     </div>
                     <div id="news-weekly" class="news-tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-8">
-                         <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                         <div class="news-card bg-white rounded-xl shadow-lg overflow-hidden">
                             <img src="https://placehold.co/600x400/fbbf24/ffffff?text=AI+in+Drug+Discovery" class="w-full h-56 object-cover" alt="News Image">
                             <div class="p-6">
-                                <h3 class="font-bold text-xl mb-2">Weekly Roundup: AI Accelerates Drug Discovery</h3>
-                                <p class="text-gray-600 mb-4">This week's major news includes a breakthrough in using AI to predict protein folding...</p>
+                                <h3 class="font-bold text-xl mb-2 text-slate-800">Weekly Roundup: AI Accelerates Drug Discovery</h3>
+                                <p class="text-gray-600 mb-4">This week's major news includes a breakthrough in using AI to predict protein folding and drug interactions...</p>
                                 <a href="#" class="text-blue-600 font-semibold hover:underline">Read More &rarr;</a>
                             </div>
                         </div>
                     </div>
                     <div id="news-monthly" class="news-tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="news-card bg-white rounded-xl shadow-lg overflow-hidden">
                             <img src="https://placehold.co/600x400/60a5fa/ffffff?text=Climate+Change+Impact" class="w-full h-56 object-cover" alt="News Image">
                             <div class="p-6">
-                                <h3 class="font-bold text-xl mb-2">Monthly Digest: The Impact of Climate Change on Biodiversity</h3>
-                                <p class="text-gray-600 mb-4">A comprehensive look at the research published this month on how rising temperatures affect ecosystems...</p>
+                                <h3 class="font-bold text-xl mb-2 text-slate-800">Monthly Digest: Impact of Climate Change on Biodiversity</h3>
+                                <p class="text-gray-600 mb-4">A comprehensive look at research published this month on how rising temperatures affect global ecosystems...</p>
                                 <a href="#" class="text-blue-600 font-semibold hover:underline">Read More &rarr;</a>
                             </div>
                         </div>
@@ -305,59 +325,59 @@
             </div>
         </section>
 
-        <!-- Why Choose Us Section --><section id="features" class="py-20">
+        <!-- Why Choose Us Section --><section id="features" class="py-20 md:py-24 bg-slate-50">
             <div class="container mx-auto px-6">
-                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Why Choose Elite?</h2>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">The Elite advantage that sets you on the path to success.</p>
+                 <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title">The Elite Advantage</h2>
+                    <p class="section-subtitle mt-4 max-w-2xl mx-auto text-lg">What sets us apart on your path to success.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                    <div class="p-6 bg-white border border-gray-200 rounded-lg">
-                        <i class="fas fa-user-tie text-4xl text-blue-600 mb-4"></i>
-                        <h4 class="text-xl font-semibold mb-2">Expert Faculty</h4>
-                        <p class="text-gray-600">Learn from PhDs and post-doctorates from renowned universities.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="p-8 bg-white border border-gray-200 rounded-xl shadow-sm">
+                        <i class="fas fa-user-tie text-5xl text-blue-600 mb-5"></i>
+                        <h4 class="text-xl font-semibold mb-2 text-slate-800">Expert Faculty</h4>
+                        <p>Learn from PhDs and post-doctorates from renowned universities.</p>
                     </div>
-                    <div class="p-6 bg-white border border-gray-200 rounded-lg">
-                        <i class="fas fa-book-open text-4xl text-blue-600 mb-4"></i>
-                        <h4 class="text-xl font-semibold mb-2">Updated Material</h4>
-                        <p class="text-gray-600">Comprehensive and well-researched study material.</p>
+                    <div class="p-8 bg-white border border-gray-200 rounded-xl shadow-sm">
+                        <i class="fas fa-book-open text-5xl text-blue-600 mb-5"></i>
+                        <h4 class="text-xl font-semibold mb-2 text-slate-800">Updated Material</h4>
+                        <p>Comprehensive and well-researched study material, updated regularly.</p>
                     </div>
-                    <div class="p-6 bg-white border border-gray-200 rounded-lg">
-                        <i class="fas fa-clipboard-check text-4xl text-blue-600 mb-4"></i>
-                        <h4 class="text-xl font-semibold mb-2">Regular Tests</h4>
-                        <p class="text-gray-600">Mock tests and performance analysis to track your progress.</p>
+                    <div class="p-8 bg-white border border-gray-200 rounded-xl shadow-sm">
+                        <i class="fas fa-clipboard-check text-5xl text-blue-600 mb-5"></i>
+                        <h4 class="text-xl font-semibold mb-2 text-slate-800">Regular Tests</h4>
+                        <p>Mock tests and performance analysis to track your progress effectively.</p>
                     </div>
-                    <div class="p-6 bg-white border border-gray-200 rounded-lg">
-                        <i class="fas fa-trophy text-4xl text-blue-600 mb-4"></i>
-                        <h4 class="text-xl font-semibold mb-2">Proven Results</h4>
-                        <p class="text-gray-600">A history of producing top rankers in national exams.</p>
+                    <div class="p-8 bg-white border border-gray-200 rounded-xl shadow-sm">
+                        <i class="fas fa-trophy text-5xl text-blue-600 mb-5"></i>
+                        <h4 class="text-xl font-semibold mb-2 text-slate-800">Proven Results</h4>
+                        <p>A history of producing top rankers in national competitive exams.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-         <!-- Contact Section --><section id="contact" class="py-20 bg-white">
+         <!-- Contact Section --><section id="contact" class="py-20 md:py-24 bg-white">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Get In Touch</h2>
-                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">We're here to help you. Reach out to us for any queries.</p>
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title">Get In Touch</h2>
+                    <p class="section-subtitle mt-4 max-w-2xl mx-auto text-lg">We're here to help you on your academic journey. Reach out to us with any queries.</p>
                 </div>
-                <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+                <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl">
                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                       <div>
-                           <i class="fas fa-map-marker-alt text-3xl text-blue-600 mb-3"></i>
-                           <h4 class="font-semibold text-lg">Our Address</h4>
-                           <p class="text-gray-600">123 Science Lane, Education City, New Delhi, India</p>
+                       <div class="p-4">
+                           <i class="fas fa-map-marker-alt text-4xl text-blue-600 mb-4"></i>
+                           <h4 class="font-semibold text-lg text-slate-800">Our Address</h4>
+                           <p>123 Science Lane, Education City, New Delhi, India</p>
                        </div>
-                        <div>
-                           <i class="fas fa-envelope text-3xl text-blue-600 mb-3"></i>
-                           <h4 class="font-semibold text-lg">Email Us</h4>
-                           <p class="text-gray-600">info@elitescience.com</p>
+                        <div class="p-4">
+                           <i class="fas fa-envelope text-4xl text-blue-600 mb-4"></i>
+                           <h4 class="font-semibold text-lg text-slate-800">Email Us</h4>
+                           <p class="hover:text-blue-600"><a href="mailto:info@elitescience.com">info@elitescience.com</a></p>
                        </div>
-                        <div>
-                           <i class="fas fa-phone-alt text-3xl text-blue-600 mb-3"></i>
-                           <h4 class="font-semibold text-lg">Call Us</h4>
-                           <p class="text-gray-600">+91 98765 43210</p>
+                        <div class="p-4">
+                           <i class="fas fa-phone-alt text-4xl text-blue-600 mb-4"></i>
+                           <h4 class="font-semibold text-lg text-slate-800">Call Us</h4>
+                           <p class="hover:text-blue-600"><a href="tel:+919876543210">+91 98765 43210</a></p>
                        </div>
                    </div>
                 </div>
@@ -365,66 +385,68 @@
         </section>
     </main>
 
-    <!-- Footer --><footer class="bg-gray-800 text-white py-10">
+    <!-- Footer --><footer class="bg-slate-800 text-slate-300 py-12">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h4 class="text-lg font-bold mb-4">Elite Science Institute</h4>
-                    <p class="text-gray-400">Your trusted partner in life science education and career advancement.</p>
+                    <h4 class="text-lg font-bold mb-4 text-white">Elite Science Institute</h4>
+                    <p class="text-slate-400">Your trusted partner in life science education and career advancement.</p>
                 </div>
                 <div>
-                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
-                    <ul>
-                        <li class="mb-2"><a href="#about" class="hover:text-blue-400">About Us</a></li>
-                        <li class="mb-2"><a href="#courses" class="hover:text-blue-400">Courses</a></li>
-                        <li class="mb-2"><a href="#" class="hover:text-blue-400">Admissions</a></li>
-                        <li class="mb-2"><a href="#" class="hover:text-blue-400">Privacy Policy</a></li>
+                    <h4 class="text-lg font-bold mb-4 text-white">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="hover:text-amber-500 transition-colors">About Us</a></li>
+                        <li><a href="#courses" class="hover:text-amber-500 transition-colors">Courses</a></li>
+                        <li><a href="#" class="hover:text-amber-500 transition-colors">Admissions</a></li>
+                        <li><a href="#" class="hover:text-amber-500 transition-colors">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-lg font-bold mb-4">Contact Us</h4>
-                    <p class="text-gray-400 mb-2"><i class="fas fa-map-marker-alt mr-2"></i>New Delhi, India</p>
-                    <p class="text-gray-400 mb-2"><i class="fas fa-envelope mr-2"></i>info@elitescience.com</p>
-                    <p class="text-gray-400"><i class="fas fa-phone-alt mr-2"></i>+91 98765 43210</p>
+                    <h4 class="text-lg font-bold mb-4 text-white">Contact Us</h4>
+                    <ul class="space-y-2 text-slate-400">
+                        <li class="flex items-start"><i class="fas fa-map-marker-alt mr-3 mt-1"></i><span>New Delhi, India</span></li>
+                        <li class="flex items-start"><i class="fas fa-envelope mr-3 mt-1"></i><a href="mailto:info@elitescience.com" class="hover:text-amber-500 transition-colors">info@elitescience.com</a></li>
+                        <li class="flex items-start"><i class="fas fa-phone-alt mr-3 mt-1"></i><a href="tel:+919876543210" class="hover:text-amber-500 transition-colors">+91 98765 43210</a></li>
+                    </ul>
                 </div>
                 <div>
-                    <h4 class="text-lg font-bold mb-4">Follow Us</h4>
+                    <h4 class="text-lg font-bold mb-4 text-white">Follow Us</h4>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-2xl hover:text-blue-400"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-2xl hover:text-blue-400"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-2xl hover:text-blue-400"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-2xl hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-2xl text-slate-400 hover:text-amber-500 transition-colors"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-2xl text-slate-400 hover:text-amber-500 transition-colors"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-2xl text-slate-400 hover:text-amber-500 transition-colors"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-2xl text-slate-400 hover:text-amber-500 transition-colors"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="text-center text-gray-500 border-t border-gray-700 mt-8 pt-6">
+            <div class="text-center text-slate-500 border-t border-slate-700 mt-8 pt-6">
                 &copy; 2024 Elite Science Institute. All Rights Reserved.
             </div>
         </div>
     </footer>
 
-    <!-- Login/Sign Up Modal --><div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 modal-backdrop opacity-0 pointer-events-none">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-md p-8 modal-content transform scale-95">
+    <!-- Login/Sign Up Modal --><div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 modal-backdrop opacity-0 pointer-events-none">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-8 modal-content transform scale-95">
             <div class="flex justify-between items-center mb-6">
-                <h2 id="auth-title" class="text-2xl font-bold text-gray-800">Login</h2>
-                <button id="close-modal-btn" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+                <h2 id="auth-title" class="text-2xl font-bold text-slate-800">Login</h2>
+                <button id="close-modal-btn" class="text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
             </div>
             
             <div class="space-y-4">
                  <div>
                     <label for="auth-email" class="block text-sm font-medium text-gray-700">Email Address</label>
-                    <input type="email" id="auth-email" placeholder="you@example.com" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <input type="email" id="auth-email" placeholder="you@example.com" class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                 </div>
                  <div id="password-container-div">
                     <label for="auth-password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input type="password" id="auth-password" placeholder="••••••••" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <input type="password" id="auth-password" placeholder="••••••••" class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                 </div>
 
                 <div id="forgot-password-container" class="text-right text-sm">
                     <button id="forgot-password-link" class="font-medium text-blue-600 hover:text-blue-500">Forgot Password?</button>
                 </div>
 
-                <button id="auth-action-btn" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 flex items-center justify-center">
+                <button id="auth-action-btn" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 flex items-center justify-center text-base">
                     <span id="auth-action-text">Login</span>
                     <i id="auth-spinner" class="fas fa-spinner fa-spin hidden"></i>
                 </button>
@@ -442,7 +464,7 @@
         </div>
     </div>
     
-    <!-- Toast Notification --><div id="toast-notification" class="toast-notification fixed bottom-5 right-5 bg-green-600 text-white py-3 px-6 rounded-lg shadow-lg transform translate-y-20 opacity-0 pointer-events-none">
+    <!-- Toast Notification --><div id="toast-notification" class="toast-notification fixed bottom-5 right-5 bg-green-600 text-white py-3 px-6 rounded-lg shadow-lg transform translate-y-24 opacity-0 pointer-events-none">
         <p id="toast-message"></p>
     </div>
 
@@ -707,7 +729,7 @@
                     address: "Elite Science Institute Corporate Office"
                 },
                 theme: {
-                    color: "#3399cc"
+                    color: "#1d4ed8" // A nice blue
                 }
             };
             const rzp1 = new Razorpay(options);
@@ -736,7 +758,7 @@
         
         function showToast(message, type = 'success') {
             toastMessage.textContent = message;
-            toast.className = 'toast-notification fixed bottom-5 right-5 text-white py-3 px-6 rounded-lg shadow-lg transform translate-y-20 opacity-0 pointer-events-none'; // Reset classes
+            toast.className = 'toast-notification fixed bottom-5 right-5 text-white py-3 px-6 rounded-lg shadow-lg transform translate-y-24 opacity-0 pointer-events-none z-50';
             
             if (type === 'success') {
                 toast.classList.add('bg-green-600');
@@ -744,10 +766,13 @@
                 toast.classList.add('bg-red-600');
             }
             
-            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
             
             setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+                toast.classList.add('translate-y-24', 'opacity-0');
+                setTimeout(() => {
+                    toast.classList.add('pointer-events-none');
+                }, 300);
             }, 5000); // Hide after 5 seconds
         }
         
