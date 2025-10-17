@@ -25,14 +25,6 @@
             transform: translateY(-10px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
-        /* Hide scrollbar for carousel */
-        .carousel {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
-        }
-        .carousel::-webkit-scrollbar {
-            display: none; /* Chrome, Safari and Opera */
-        }
         /* Custom modal styles */
         .modal-backdrop {
             transition: opacity 0.3s ease-in-out;
@@ -42,6 +34,13 @@
         }
         .toast-notification {
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .tab-button {
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        .tab-button.active {
+            color: #2563eb; /* text-blue-600 */
+            border-bottom-color: #2563eb; /* border-blue-600 */
         }
     </style>
 </head>
@@ -55,11 +54,13 @@
                     <span>Elite Science Institute</span>
                 </a>
                 
-                <!-- Desktop Menu --><div class="hidden md:flex items-center space-x-6">
+                <!-- Desktop Menu --><div class="hidden md:flex items-center space-x-4">
                     <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
                     <a href="#about" class="text-gray-600 hover:text-blue-600 transition duration-300">About Us</a>
                     <a href="#courses" class="text-gray-600 hover:text-blue-600 transition duration-300">Courses</a>
-                    <a href="#features" class="text-gray-600 hover:text-blue-600 transition duration-300">Why Us</a>
+                    <a href="#test-series" class="text-gray-600 hover:text-blue-600 transition duration-300">Test Series</a>
+                    <a href="#phd" class="text-gray-600 hover:text-blue-600 transition duration-300">PhD Positions</a>
+                    <a href="#news" class="text-gray-600 hover:text-blue-600 transition duration-300">News</a>
                     <a href="#contact" class="text-gray-600 hover:text-blue-600 transition duration-300">Contact</a>
                     <button id="login-btn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center space-x-2">
                         <i class="fas fa-sign-in-alt"></i>
@@ -83,7 +84,9 @@
                 <a href="#" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Home</a>
                 <a href="#about" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">About Us</a>
                 <a href="#courses" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Courses</a>
-                <a href="#features" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Why Us</a>
+                <a href="#test-series" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Test Series</a>
+                <a href="#phd" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">PhD Positions</a>
+                <a href="#news" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">News</a>
                 <a href="#contact" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Contact</a>
                 <button id="mobile-login-btn" class="w-full mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Login / Sign Up</button>
             </div>
@@ -163,29 +166,168 @@
             </div>
         </section>
 
-        <!-- Why Choose Us Section --><section id="features" class="py-20 bg-white">
+        <!-- Test Series Section --><section id="test-series" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Test Series</h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Evaluate your preparation with our comprehensive test series.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="course-card bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/400x250/f59e0b/ffffff?text=All+India+Mock+Test" alt="All India Mock Test" class="w-full h-48 object-cover">
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">All India Mock Test</h3>
+                            <p class="text-gray-600 mb-4 flex-grow">Experience the real exam environment with our All India level mock tests.</p>
+                            <p class="text-2xl font-bold text-blue-700 mb-4">₹1,500</p>
+                            <button class="buy-now-btn mt-auto w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition duration-300" data-course="All India Mock Test" data-amount="1500">Buy Now</button>
+                        </div>
+                    </div>
+                    <div class="course-card bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/400x250/ec4899/ffffff?text=Topic-wise+Tests" alt="Topic-wise Tests" class="w-full h-48 object-cover">
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Topic-wise Tests</h3>
+                            <p class="text-gray-600 mb-4 flex-grow">Strengthen your concepts with tests focused on individual topics.</p>
+                             <p class="text-2xl font-bold text-blue-700 mb-4">₹2,500</p>
+                            <button class="buy-now-btn mt-auto w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition duration-300" data-course="Topic-wise Tests" data-amount="2500">Buy Now</button>
+                        </div>
+                    </div>
+                    <div class="course-card bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/400x250/ef4444/ffffff?text=Previous+Year+Papers" alt="Previous Year Papers" class="w-full h-48 object-cover">
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">Previous Year Papers</h3>
+                            <p class="text-gray-600 mb-4 flex-grow">Practice with solved papers from previous years to understand the pattern.</p>
+                             <p class="text-2xl font-bold text-blue-700 mb-4">₹1,000</p>
+                            <button class="buy-now-btn mt-auto w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition duration-300" data-course="Previous Year Papers" data-amount="1000">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PhD Positions Section --><section id="phd" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">PhD Positions</h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Explore PhD opportunities in India and around the world.</p>
+                </div>
+                <div class="max-w-4xl mx-auto">
+                    <div class="border-b border-gray-200 mb-4">
+                        <nav class="flex space-x-8" aria-label="Tabs">
+                            <button class="tab-button phd-tab-button whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg text-gray-500 border-transparent active" data-tab="india">India</button>
+                            <button class="tab-button phd-tab-button whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg text-gray-500 border-transparent" data-tab="abroad">Abroad</button>
+                        </nav>
+                    </div>
+                    <div id="phd-india" class="phd-tab-content space-y-4">
+                        <!-- Position 1 -->
+                        <div class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-lg">Indian Institute of Science (IISc), Bangalore</h4>
+                                <p class="text-gray-600">Area: Molecular Biology</p>
+                            </div>
+                            <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Apply Now</a>
+                        </div>
+                        <!-- Position 2 -->
+                        <div class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-lg">Tata Institute of Fundamental Research (TIFR), Mumbai</h4>
+                                <p class="text-gray-600">Area: Neuroscience</p>
+                            </div>
+                            <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Apply Now</a>
+                        </div>
+                    </div>
+                    <div id="phd-abroad" class="phd-tab-content space-y-4 hidden">
+                         <!-- Position 1 -->
+                        <div class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-lg">Harvard University, USA</h4>
+                                <p class="text-gray-600">Area: Genetics and Genomics</p>
+                            </div>
+                            <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Apply Now</a>
+                        </div>
+                        <!-- Position 2 -->
+                        <div class="bg-white p-4 rounded-lg shadow-md flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-lg">Max Planck Institute, Germany</h4>
+                                <p class="text-gray-600">Area: Plant Biology</p>
+                            </div>
+                            <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Apply Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research News Section --><section id="news" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Research News</h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Stay updated with the latest breakthroughs in science.</p>
+                </div>
+                 <div class="max-w-5xl mx-auto">
+                    <div class="border-b border-gray-200 mb-8">
+                        <nav class="flex space-x-8" aria-label="Tabs">
+                            <button class="tab-button news-tab-button whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg text-gray-500 border-transparent active" data-tab="daily">Daily</button>
+                            <button class="tab-button news-tab-button whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg text-gray-500 border-transparent" data-tab="weekly">Weekly</button>
+                            <button class="tab-button news-tab-button whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-lg text-gray-500 border-transparent" data-tab="monthly">Monthly</button>
+                        </nav>
+                    </div>
+                    <div id="news-daily" class="news-tab-content grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src="https://placehold.co/600x400/34d399/ffffff?text=CRISPR+Advancement" class="w-full h-56 object-cover" alt="News Image">
+                            <div class="p-6">
+                                <h3 class="font-bold text-xl mb-2">New CRISPR technique shows promise in gene editing</h3>
+                                <p class="text-gray-600 mb-4">Researchers have developed a new method that increases the efficiency of CRISPR-Cas9...</p>
+                                <a href="#" class="text-blue-600 font-semibold hover:underline">Read More &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="news-weekly" class="news-tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-8">
+                         <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src="https://placehold.co/600x400/fbbf24/ffffff?text=AI+in+Drug+Discovery" class="w-full h-56 object-cover" alt="News Image">
+                            <div class="p-6">
+                                <h3 class="font-bold text-xl mb-2">Weekly Roundup: AI Accelerates Drug Discovery</h3>
+                                <p class="text-gray-600 mb-4">This week's major news includes a breakthrough in using AI to predict protein folding...</p>
+                                <a href="#" class="text-blue-600 font-semibold hover:underline">Read More &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="news-monthly" class="news-tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                            <img src="https://placehold.co/600x400/60a5fa/ffffff?text=Climate+Change+Impact" class="w-full h-56 object-cover" alt="News Image">
+                            <div class="p-6">
+                                <h3 class="font-bold text-xl mb-2">Monthly Digest: The Impact of Climate Change on Biodiversity</h3>
+                                <p class="text-gray-600 mb-4">A comprehensive look at the research published this month on how rising temperatures affect ecosystems...</p>
+                                <a href="#" class="text-blue-600 font-semibold hover:underline">Read More &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section --><section id="features" class="py-20">
             <div class="container mx-auto px-6">
                  <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Why Choose Elite?</h2>
                     <p class="text-gray-600 mt-4 max-w-2xl mx-auto">The Elite advantage that sets you on the path to success.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                    <div class="p-6 border border-gray-200 rounded-lg">
+                    <div class="p-6 bg-white border border-gray-200 rounded-lg">
                         <i class="fas fa-user-tie text-4xl text-blue-600 mb-4"></i>
                         <h4 class="text-xl font-semibold mb-2">Expert Faculty</h4>
                         <p class="text-gray-600">Learn from PhDs and post-doctorates from renowned universities.</p>
                     </div>
-                    <div class="p-6 border border-gray-200 rounded-lg">
+                    <div class="p-6 bg-white border border-gray-200 rounded-lg">
                         <i class="fas fa-book-open text-4xl text-blue-600 mb-4"></i>
                         <h4 class="text-xl font-semibold mb-2">Updated Material</h4>
                         <p class="text-gray-600">Comprehensive and well-researched study material.</p>
                     </div>
-                    <div class="p-6 border border-gray-200 rounded-lg">
+                    <div class="p-6 bg-white border border-gray-200 rounded-lg">
                         <i class="fas fa-clipboard-check text-4xl text-blue-600 mb-4"></i>
                         <h4 class="text-xl font-semibold mb-2">Regular Tests</h4>
                         <p class="text-gray-600">Mock tests and performance analysis to track your progress.</p>
                     </div>
-                    <div class="p-6 border border-gray-200 rounded-lg">
+                    <div class="p-6 bg-white border border-gray-200 rounded-lg">
                         <i class="fas fa-trophy text-4xl text-blue-600 mb-4"></i>
                         <h4 class="text-xl font-semibold mb-2">Proven Results</h4>
                         <p class="text-gray-600">A history of producing top rankers in national exams.</p>
@@ -194,7 +336,7 @@
             </div>
         </section>
 
-         <!-- Contact Section --><section id="contact" class="py-20">
+         <!-- Contact Section --><section id="contact" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Get In Touch</h2>
@@ -357,6 +499,12 @@
         const toast = document.getElementById('toast-notification');
         const toastMessage = document.getElementById('toast-message');
 
+        // Tab Elements
+        const phdTabButtons = document.querySelectorAll('.phd-tab-button');
+        const phdTabContents = document.querySelectorAll('.phd-tab-content');
+        const newsTabButtons = document.querySelectorAll('.news-tab-button');
+        const newsTabContents = document.querySelectorAll('.news-tab-content');
+
 
         let authView = 'login'; // Can be 'login', 'signup', or 'reset'
 
@@ -450,6 +598,27 @@
             }
         };
 
+        // Tab switching logic
+        function setupTabs(buttons, contents) {
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    const tab = button.dataset.tab;
+                    contents.forEach(content => {
+                        if (content.id.endsWith(tab)) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+        }
+
+        setupTabs(phdTabButtons, phdTabContents);
+        setupTabs(newsTabButtons, newsTabContents);
+
         // --- Firebase Auth Logic ---
         onAuthStateChanged(auth, (user) => {
             updateUIForLogin(user);
@@ -519,8 +688,7 @@
         
         function initiatePayment(courseName, amount) {
             const options = {
-                // IMPORTANT: Replace "YOUR_KEY_ID_HERE" with your actual Razorpay Key ID
-                key: "rzp_live_RUYMWwhf58WjEe", 
+                key: "YOUR_KEY_ID_HERE", 
                 amount: amount * 100, // Amount in the smallest currency unit (paise)
                 currency: "INR",
                 name: "Elite Science Institute",
