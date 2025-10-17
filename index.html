@@ -63,7 +63,7 @@
                     </button>
                     <div id="user-profile" class="hidden items-center space-x-2">
                          <i class="fas fa-user-circle text-2xl text-green-500"></i>
-                         <span class="text-gray-700 font-medium">Logged In</span>
+                         <span id="user-email" class="text-gray-700 font-medium text-sm"></span>
                          <button id="logout-btn" class="text-sm text-red-500 hover:underline">(Logout)</button>
                     </div>
                 </div>
@@ -267,34 +267,29 @@
     <div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 modal-backdrop opacity-0 pointer-events-none">
         <div class="bg-white rounded-lg shadow-2xl w-full max-w-md p-8 modal-content transform scale-95">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-800">Login / Sign Up</h2>
+                <h2 id="auth-title" class="text-2xl font-bold text-gray-800">Login</h2>
                 <button id="close-modal-btn" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
             </div>
             
-            <!-- Phone Number Input -->
-            <div id="phone-input-section">
-                <p class="text-gray-600 mb-4">Enter your mobile number to receive an OTP.</p>
-                <div class="flex items-center border-2 border-gray-200 rounded-lg p-2 focus-within:border-blue-500">
-                    <span class="text-gray-500 px-2 border-r border-gray-300">+91</span>
-                    <input type="tel" id="phone-number" placeholder="9876543210" class="w-full p-2 border-none focus:ring-0" maxlength="10">
+            <div class="space-y-4">
+                 <div>
+                    <label for="auth-email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                    <input type="email" id="auth-email" placeholder="you@example.com" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                 </div>
-                <div id="recaptcha-container" class="mt-4"></div>
-                <button id="send-otp-btn" class="w-full bg-blue-600 text-white py-3 rounded-lg mt-4 font-semibold hover:bg-blue-700 transition duration-300 flex items-center justify-center">
-                    <span id="send-otp-text">Send OTP</span>
-                    <i id="send-otp-spinner" class="fas fa-spinner fa-spin hidden"></i>
-                </button>
-            </div>
+                 <div>
+                    <label for="auth-password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="auth-password" placeholder="••••••••" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
 
-            <!-- OTP Input -->
-            <div id="otp-input-section" class="hidden">
-                <p class="text-gray-600 mb-4">An OTP has been sent to <span id="user-phone-display" class="font-semibold"></span>. Please enter it below.</p>
-                <input type="text" id="otp-code" placeholder="Enter 6-digit OTP" class="w-full p-3 border-2 border-gray-200 rounded-lg text-center tracking-widest text-lg focus:border-blue-500 focus:ring-0" maxlength="6">
-                <button id="verify-otp-btn" class="w-full bg-green-500 text-white py-3 rounded-lg mt-4 font-semibold hover:bg-green-600 transition duration-300 flex items-center justify-center">
-                    <span id="verify-otp-text">Verify OTP</span>
-                    <i id="verify-otp-spinner" class="fas fa-spinner fa-spin hidden"></i>
+                <button id="auth-action-btn" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 flex items-center justify-center">
+                    <span id="auth-action-text">Login</span>
+                    <i id="auth-spinner" class="fas fa-spinner fa-spin hidden"></i>
                 </button>
-                 <button id="change-number-btn" class="w-full text-center text-sm text-blue-600 hover:underline mt-4">Change Number</button>
             </div>
+            
+            <p id="auth-toggle-text" class="text-center text-sm text-gray-600 mt-6">
+                Don't have an account? <button id="auth-toggle-link" class="font-medium text-blue-600 hover:text-blue-500">Sign Up</button>
+            </p>
 
             <div id="auth-message" class="mt-4 text-center text-sm"></div>
 
@@ -305,7 +300,7 @@
     <script type="module">
         // Import Firebase modules
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, RecaptchaVerifier, signInWithPhoneNumber, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -328,25 +323,22 @@
         const mobileLoginBtn = document.getElementById('mobile-login-btn');
         const logoutBtn = document.getElementById('logout-btn');
         const userProfile = document.getElementById('user-profile');
+        const userEmailDisplay = document.getElementById('user-email');
         
+        // Modal elements
         const authModal = document.getElementById('auth-modal');
         const closeModalBtn = document.getElementById('close-modal-btn');
-        const phoneInputSection = document.getElementById('phone-input-section');
-        const otpInputSection = document.getElementById('otp-input-section');
-        const phoneNumberInput = document.getElementById('phone-number');
-        const userPhoneDisplay = document.getElementById('user-phone-display');
-        const otpInput = document.getElementById('otp-code');
-        const sendOtpBtn = document.getElementById('send-otp-btn');
-        const verifyOtpBtn = document.getElementById('verify-otp-btn');
-        const changeNumberBtn = document.getElementById('change-number-btn');
+        const authTitle = document.getElementById('auth-title');
+        const authEmailInput = document.getElementById('auth-email');
+        const authPasswordInput = document.getElementById('auth-password');
+        const authActionBtn = document.getElementById('auth-action-btn');
+        const authActionText = document.getElementById('auth-action-text');
+        const authSpinner = document.getElementById('auth-spinner');
+        const authToggleText = document.getElementById('auth-toggle-text');
+        const authToggleLink = document.getElementById('auth-toggle-link');
         const authMessage = document.getElementById('auth-message');
-        const recaptchaContainer = document.getElementById('recaptcha-container');
 
-        // Spinners and text elements
-        const sendOtpText = document.getElementById('send-otp-text');
-        const sendOtpSpinner = document.getElementById('send-otp-spinner');
-        const verifyOtpText = document.getElementById('verify-otp-text');
-        const verifyOtpSpinner = document.getElementById('verify-otp-spinner');
+        let isLoginMode = true;
 
         // --- UI Logic ---
 
@@ -375,6 +367,25 @@
                 closeModal();
             }
         });
+        
+        const toggleAuthMode = () => {
+            isLoginMode = !isLoginMode;
+            if (isLoginMode) {
+                authTitle.textContent = 'Login';
+                authActionText.textContent = 'Login';
+                authToggleText.innerHTML = `Don't have an account? <button id="auth-toggle-link" class="font-medium text-blue-600 hover:text-blue-500">Sign Up</button>`;
+            } else {
+                authTitle.textContent = 'Sign Up';
+                authActionText.textContent = 'Create Account';
+                authToggleText.innerHTML = `Already have an account? <button id="auth-toggle-link" class="font-medium text-blue-600 hover:text-blue-500">Login</button>`;
+            }
+            // Re-add event listener to the new button
+            document.getElementById('auth-toggle-link').addEventListener('click', toggleAuthMode);
+            showMessage('');
+        };
+        
+        authToggleLink.addEventListener('click', toggleAuthMode);
+
 
         const updateUIForLogin = (user) => {
             if (user) {
@@ -383,12 +394,14 @@
                 mobileLoginBtn.disabled = true;
                 userProfile.classList.remove('hidden');
                 userProfile.classList.add('flex');
+                userEmailDisplay.textContent = user.email;
             } else {
                 loginBtn.classList.remove('hidden');
                 mobileLoginBtn.textContent = 'Login / Sign Up';
                 mobileLoginBtn.disabled = false;
                 userProfile.classList.add('hidden');
                 userProfile.classList.remove('flex');
+                userEmailDisplay.textContent = '';
             }
         };
 
@@ -407,80 +420,45 @@
             });
         });
 
-        // Recaptcha Verifier Setup
-        const setupRecaptcha = () => {
-             window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-                'size': 'invisible',
-                'callback': (response) => {
-                    // reCAPTCHA solved, allow signInWithPhoneNumber.
-                    console.log("reCAPTCHA verified");
-                }
-            });
-        }
-        setupRecaptcha();
+        // Login/Sign Up Action
+        authActionBtn.addEventListener('click', () => {
+            const email = authEmailInput.value;
+            const password = authPasswordInput.value;
 
-
-        // Send OTP
-        sendOtpBtn.addEventListener('click', () => {
-            const phoneNumber = phoneNumberInput.value.trim();
-            if (phoneNumber.length !== 10 || !/^\d{10}$/.test(phoneNumber)) {
-                showMessage('Please enter a valid 10-digit mobile number.', 'error');
+            if (!email || !password) {
+                showMessage('Please enter both email and password.', 'error');
                 return;
             }
             
-            const fullPhoneNumber = `+91${phoneNumber}`;
-            const appVerifier = window.recaptchaVerifier;
-
-            setLoading(sendOtpBtn, sendOtpText, sendOtpSpinner, true);
-            showMessage('Sending OTP...', 'info');
-
-            signInWithPhoneNumber(auth, fullPhoneNumber, appVerifier)
-                .then((confirmationResult) => {
-                    window.confirmationResult = confirmationResult;
-                    showMessage('OTP sent successfully!', 'success');
-                    userPhoneDisplay.textContent = fullPhoneNumber;
-                    phoneInputSection.classList.add('hidden');
-                    otpInputSection.classList.remove('hidden');
-                }).catch((error) => {
-                    console.error("Error sending OTP:", error);
-                    showMessage(`Error: ${error.message}. Please refresh and try again.`, 'error');
-                    // Reset reCAPTCHA
-                    window.recaptchaVerifier.render().then(function(widgetId) {
-                       grecaptcha.reset(widgetId);
+            setLoading(authActionBtn, authActionText, authSpinner, true);
+            
+            if (isLoginMode) {
+                // Handle Login
+                signInWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        showMessage('Login successful!', 'success');
+                        setTimeout(closeModal, 1500);
+                    })
+                    .catch((error) => {
+                        showMessage(getFriendlyErrorMessage(error.code), 'error');
+                    })
+                    .finally(() => {
+                        setLoading(authActionBtn, authActionText, authSpinner, false);
                     });
-                }).finally(() => {
-                    setLoading(sendOtpBtn, sendOtpText, sendOtpSpinner, false);
-                });
-        });
-
-        // Verify OTP
-        verifyOtpBtn.addEventListener('click', () => {
-            const code = otpInput.value.trim();
-            if (code.length !== 6) {
-                showMessage('Please enter the 6-digit OTP.', 'error');
-                return;
+            } else {
+                // Handle Sign Up
+                 createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        showMessage('Account created successfully! You are now logged in.', 'success');
+                         setTimeout(closeModal, 1500);
+                    })
+                    .catch((error) => {
+                        showMessage(getFriendlyErrorMessage(error.code), 'error');
+                    })
+                    .finally(() => {
+                        setLoading(authActionBtn, authActionText, authSpinner, false);
+                    });
             }
-
-            setLoading(verifyOtpBtn, verifyOtpText, verifyOtpSpinner, true);
-            showMessage('Verifying OTP...', 'info');
-
-            window.confirmationResult.confirm(code).then((result) => {
-                const user = result.user;
-                showMessage('Verification successful! You are logged in.', 'success');
-                setTimeout(() => {
-                    closeModal();
-                }, 1500);
-            }).catch((error) => {
-                console.error("Error verifying OTP:", error);
-                showMessage('Invalid OTP. Please try again.', 'error');
-            }).finally(() => {
-                 setLoading(verifyOtpBtn, verifyOtpText, verifyOtpSpinner, false);
-            });
-        });
-        
-        // Change number button logic
-        changeNumberBtn.addEventListener('click', () => {
-            resetModalUI();
         });
         
         // --- Helper Functions ---
@@ -502,23 +480,41 @@
         function setLoading(button, textEl, spinnerEl, isLoading) {
             if (isLoading) {
                 button.disabled = true;
-                textEl.classList.add('hidden');
+                textEl.style.opacity = '0';
                 spinnerEl.classList.remove('hidden');
             } else {
                 button.disabled = false;
-                textEl.classList.remove('hidden');
+                textEl.style.opacity = '1';
                 spinnerEl.classList.add('hidden');
             }
         }
 
         function resetModalUI() {
-            phoneInputSection.classList.remove('hidden');
-            otpInputSection.classList.add('hidden');
-            phoneNumberInput.value = '';
-            otpInput.value = '';
+            if (!isLoginMode) {
+                toggleAuthMode(); // Switch back to login mode
+            }
+            authEmailInput.value = '';
+            authPasswordInput.value = '';
             showMessage('');
+        }
+        
+        function getFriendlyErrorMessage(errorCode) {
+            switch (errorCode) {
+                case 'auth/invalid-email':
+                    return 'Please enter a valid email address.';
+                case 'auth/user-not-found':
+                case 'auth/wrong-password':
+                    return 'Invalid email or password.';
+                case 'auth/email-already-in-use':
+                    return 'An account with this email already exists.';
+                case 'auth/weak-password':
+                    return 'Password should be at least 6 characters long.';
+                default:
+                    return 'An unknown error occurred. Please try again.';
+            }
         }
 
     </script>
 </body>
 </html>
+
