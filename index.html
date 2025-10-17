@@ -55,7 +55,12 @@
         .buy-now-btn:hover {
             background-color: #a16207; /* amber-600 */
         }
-        
+        .profile-dropdown-item {
+            transition: background-color 0.2s ease-in-out;
+        }
+        .profile-dropdown-item:hover {
+            background-color: #f3f4f6; /* gray-100 */
+        }
     </style>
 </head>
 <body class="bg-slate-50">
@@ -80,12 +85,21 @@
                         <i class="fas fa-sign-in-alt"></i>
                         <span>Login / Sign Up</span>
                     </button>
-                    <div id="user-profile" class="hidden items-center space-x-3">
-                         <i class="fas fa-user-circle text-3xl text-green-500"></i>
-                         <div class="text-sm">
-                            <span id="user-display-name" class="text-slate-700 font-semibold block"></span>
-                            <button id="logout-btn" class="text-xs text-red-600 hover:underline">Logout</button>
-                         </div>
+                    <div id="user-profile" class="hidden relative group">
+                        <div class="flex flex-col items-center cursor-pointer">
+                            <div class="w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center overflow-hidden border-2 border-slate-300" id="avatar-container">
+                                <img id="user-avatar" class="w-full h-full object-cover hidden" alt="User Avatar">
+                                <i id="user-icon" class="fas fa-user text-2xl text-slate-500"></i>
+                                <div id="avatar-spinner" class="hidden w-6 h-6 border-4 border-t-blue-500 border-gray-200 rounded-full animate-spin"></div>
+                            </div>
+                            <span id="user-display-name" class="text-xs text-slate-700 font-semibold mt-1 max-w-[120px] text-center truncate"></span>
+                        </div>
+                        <div class="absolute top-full right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20 hidden group-hover:block">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 profile-dropdown-item">My Purchases</a>
+                            <label for="avatar-upload" class="block px-4 py-2 text-sm text-gray-700 profile-dropdown-item cursor-pointer">Change Picture</label>
+                            <input type="file" id="avatar-upload" class="hidden" accept="image/*">
+                            <button id="logout-btn" class="w-full text-left px-4 py-2 text-sm text-red-600 profile-dropdown-item">Logout</button>
+                        </div>
                     </div>
                 </div>
 
@@ -480,7 +494,8 @@
     <script type="module">
         // Import Firebase modules
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail, updateProfile, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -495,6 +510,7 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const storage = getStorage(app);
         
         let currentUser = null;
 
@@ -506,6 +522,11 @@
         const logoutBtn = document.getElementById('logout-btn');
         const userProfile = document.getElementById('user-profile');
         const userDisplayName = document.getElementById('user-display-name');
+        const userAvatar = document.getElementById('user-avatar');
+        const userIcon = document.getElementById('user-icon');
+        const avatarSpinner = document.getElementById('avatar-spinner');
+        const avatarContainer = document.getElementById('avatar-container');
+        const avatarUploadInput = document.getElementById('avatar-upload');
         
         // Modal elements
         const authModal = document.getElementById('auth-modal');
@@ -622,7 +643,25 @@
                 mobileLoginBtn.disabled = true;
                 userProfile.classList.remove('hidden');
                 userProfile.classList.add('flex');
-                userDisplayName.textContent = user.displayName || user.email; // Fallback to email if display name is not set
+                userDisplayName.textContent = user.displayName || user.email;
+
+                if (user.photoURL) {
+                    userAvatar.src = user.photoURL;
+                    userAvatar.classList.remove('hidden');
+                    userIcon.classList.add('hidden');
+                } else {
+                    userAvatar.classList.add('hidden');
+                    userIcon.classList.remove('hidden');
+                }
+
+                if (!user.emailVerified && !sessionStorage.getItem('verificationToastShown')) {
+                     sendEmailVerification(user)
+                        .then(() => {
+                            showToast('Please check your inbox to verify your email.', 'info');
+                            sessionStorage.setItem('verificationToastShown', 'true');
+                        });
+                }
+
             } else {
                 loginBtn.classList.remove('hidden');
                 mobileLoginBtn.textContent = 'Login / Sign Up';
@@ -667,9 +706,8 @@
         });
 
         authActionBtn.addEventListener('click', async () => {
-            const fullName = authFullNameInput.value;
-            const email = authEmailInput.value;
-            const mobile = authMobileInput.value;
+            const fullName = authFullNameInput.value.trim();
+            const email = authEmailInput.value.trim();
             const password = authPasswordInput.value;
 
             if (!email) {
@@ -700,11 +738,11 @@
                  try {
                     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                     await updateProfile(userCredential.user, { displayName: fullName });
+                    await sendEmailVerification(userCredential.user);
                     
-                    // Manually trigger a state change to update UI with display name
                     updateUIForLogin(auth.currentUser);
 
-                    showMessage('Account created successfully! You are now logged in.', 'success');
+                    showMessage('Account created! A verification link has been sent to your email.', 'success');
                     setTimeout(closeModal, 1500);
                  } catch (error) {
                     showMessage(getFriendlyErrorMessage(error.code), 'error');
@@ -718,6 +756,47 @@
                     .finally(() => setLoading(authActionBtn, authActionText, authSpinner, false));
             }
         });
+
+        // --- Profile Picture Upload ---
+        avatarContainer.addEventListener('click', () => {
+            if(currentUser) {
+                avatarUploadInput.click();
+            }
+        });
+
+        avatarUploadInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file || !currentUser) return;
+
+            const storageRef = ref(storage, `profile_pictures/${currentUser.uid}`);
+            
+            // Show spinner
+            userIcon.classList.add('hidden');
+            userAvatar.classList.add('hidden');
+            avatarSpinner.classList.remove('hidden');
+
+            uploadBytes(storageRef, file).then(snapshot => {
+                return getDownloadURL(snapshot.ref);
+            }).then(downloadURL => {
+                return updateProfile(currentUser, { photoURL: downloadURL });
+            }).then(() => {
+                userAvatar.src = currentUser.photoURL;
+                avatarSpinner.classList.add('hidden');
+                userAvatar.classList.remove('hidden');
+                showToast('Profile picture updated!', 'success');
+            }).catch(error => {
+                console.error("Error uploading profile picture: ", error);
+                showToast('Failed to update picture.', 'error');
+                avatarSpinner.classList.add('hidden');
+                // Show original avatar or icon
+                 if (currentUser.photoURL) {
+                    userAvatar.classList.remove('hidden');
+                } else {
+                    userIcon.classList.remove('hidden');
+                }
+            });
+        });
+        
         
         // --- Payment Logic ---
         buyNowButtons.forEach(button => {
@@ -725,6 +804,10 @@
                 if (!currentUser) {
                     openModal();
                     showMessage('Please log in to purchase a course.', 'info');
+                    return;
+                }
+                 if (!currentUser.emailVerified) {
+                    showToast('Please verify your email before making a purchase.', 'error');
                     return;
                 }
                 
@@ -737,7 +820,7 @@
         function initiatePayment(courseName, amount) {
             const options = {
                 key: "YOUR_KEY_ID_HERE", 
-                amount: amount * 100, // Amount in the smallest currency unit (paise)
+                amount: amount * 100,
                 currency: "INR",
                 name: "Elite Science Institute",
                 description: `Payment for ${courseName}`,
@@ -788,7 +871,10 @@
             
             if (type === 'success') {
                 toast.classList.add('bg-green-600');
-            } else {
+            } else if(type === 'info') {
+                 toast.classList.add('bg-blue-600');
+            }
+            else {
                 toast.classList.add('bg-red-600');
             }
             
@@ -844,4 +930,6 @@
     </script>
 </body>
 </html>
+" and update it to a new version.
+I have not got any otp to verify my email Id.
 
