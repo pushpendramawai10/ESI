@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Science Institute - Premier Coaching for Life Sciences</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1600x800/2c3e50/ffffff?text=Elite+Campus');
+            background-size: cover;
+            background-position: center;
+        }
+        .course-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        /* Hide scrollbar for carousel */
+        .carousel {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .carousel::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
+        }
+        /* Custom modal styles */
+        .modal-backdrop {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-content {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-blue-800">
+                    <i class="fas fa-atom mr-2"></i>Elite Science Institute
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition duration-300">About Us</a>
+                    <a href="#courses" class="text-gray-600 hover:text-blue-600 transition duration-300">Courses</a>
+                    <a href="#features" class="text-gray-600 hover:text-blue-600 transition duration-300">Why Us</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-600 transition duration-300">Contact</a>
+                    <button id="login-btn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center space-x-2">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Login / Sign Up</span>
+                    </button>
+                    <div id="user-profile" class="hidden items-center space-x-2">
+                         <i class="fas fa-user-circle text-2xl text-green-500"></i>
+                         <span class="text-gray-700 font-medium">Logged In</span>
+                         <button id="logout-btn" class="text-sm text-red-500 hover:underline">(Logout)</button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4">
+                <a href="#" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Home</a>
+                <a href="#about" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">About Us</a>
+                <a href="#courses" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Courses</a>
+                <a href="#features" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Why Us</a>
+                <a href="#contact" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Contact</a>
+                <button id="mobile-login-btn" class="w-full mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Login / Sign Up</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section text-white">
+            <div class="container mx-auto px-6 py-32 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">Shaping the Future of Science Professionals</h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl mx-auto">Your journey to a successful career in life sciences and biotechnology begins here. Join Elite Science Institute to achieve your academic goals.</p>
+                <a href="#courses" class="bg-white text-blue-800 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition duration-300">Explore Our Courses</a>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">About Elite Science Institute</h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Pioneering excellence in life science coaching since 2005.</p>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/2">
+                        <img src="https://placehold.co/600x400/e2e8f0/334155?text=Our+Mission" alt="About Us Image" class="rounded-lg shadow-xl">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Vision & Mission</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Elite Science Institute was founded with the mission to provide unparalleled coaching for students aspiring to excel in competitive exams like CSIR-UGC-NET/JRF, DBT-JRF, ICMR-JRF, and IIT-JAM. We believe in building a strong conceptual foundation.
+                        </p>
+                        <p class="text-gray-600 leading-relaxed">
+                            Our vision is to be the most trusted name in life science education, known for our dedicated faculty, comprehensive study material, and a proven track record of success. We are committed to nurturing the scientific minds of tomorrow.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section id="courses" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Our Premier Courses</h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Comprehensive programs designed for guaranteed success.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Course Card 1 -->
+                    <div class="course-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <img src="https://placehold.co/400x250/3b82f6/ffffff?text=CSIR-UGC+NET/JRF" alt="CSIR-UGC NET/JRF" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">CSIR-UGC NET/JRF</h3>
+                            <p class="text-gray-600 mb-4">A comprehensive program covering all units of Life Sciences syllabus for the prestigious CSIR-UGC NET exam.</p>
+                            <a href="#" class="text-blue-600 font-semibold hover:underline">Learn More &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Course Card 2 -->
+                    <div class="course-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <img src="https://placehold.co/400x250/10b981/ffffff?text=IIT-JAM+Biotech" alt="IIT-JAM Biotechnology" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">IIT-JAM Biotechnology</h3>
+                            <p class="text-gray-600 mb-4">Specialized coaching for the IIT-JAM Biotechnology entrance, paving your way to top MSc programs in India.</p>
+                            <a href="#" class="text-blue-600 font-semibold hover:underline">Learn More &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Course Card 3 -->
+                    <div class="course-card bg-white rounded-lg shadow-lg overflow-hidden">
+                        <img src="https://placehold.co/400x250/8b5cf6/ffffff?text=DBT-JRF" alt="DBT-JRF" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">DBT-JRF Program</h3>
+                            <p class="text-gray-600 mb-4">Focused preparation for the DBT-JRF examination, unlocking opportunities in top research institutions.</p>
+                            <a href="#" class="text-blue-600 font-semibold hover:underline">Learn More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section id="features" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Why Choose Elite?</h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">The Elite advantage that sets you on the path to success.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="p-6 border border-gray-200 rounded-lg">
+                        <i class="fas fa-user-tie text-4xl text-blue-600 mb-4"></i>
+                        <h4 class="text-xl font-semibold mb-2">Expert Faculty</h4>
+                        <p class="text-gray-600">Learn from PhDs and post-doctorates from renowned universities.</p>
+                    </div>
+                    <div class="p-6 border border-gray-200 rounded-lg">
+                        <i class="fas fa-book-open text-4xl text-blue-600 mb-4"></i>
+                        <h4 class="text-xl font-semibold mb-2">Updated Material</h4>
+                        <p class="text-gray-600">Comprehensive and well-researched study material.</p>
+                    </div>
+                    <div class="p-6 border border-gray-200 rounded-lg">
+                        <i class="fas fa-clipboard-check text-4xl text-blue-600 mb-4"></i>
+                        <h4 class="text-xl font-semibold mb-2">Regular Tests</h4>
+                        <p class="text-gray-600">Mock tests and performance analysis to track your progress.</p>
+                    </div>
+                    <div class="p-6 border border-gray-200 rounded-lg">
+                        <i class="fas fa-trophy text-4xl text-blue-600 mb-4"></i>
+                        <h4 class="text-xl font-semibold mb-2">Proven Results</h4>
+                        <p class="text-gray-600">A history of producing top rankers in national exams.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <!-- Contact Section -->
+        <section id="contact" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Get In Touch</h2>
+                    <p class="text-gray-600 mt-4 max-w-2xl mx-auto">We're here to help you. Reach out to us for any queries.</p>
+                </div>
+                <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+                   <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                       <div>
+                           <i class="fas fa-map-marker-alt text-3xl text-blue-600 mb-3"></i>
+                           <h4 class="font-semibold text-lg">Our Address</h4>
+                           <p class="text-gray-600">123 Science Lane, Education City, New Delhi, India</p>
+                       </div>
+                        <div>
+                           <i class="fas fa-envelope text-3xl text-blue-600 mb-3"></i>
+                           <h4 class="font-semibold text-lg">Email Us</h4>
+                           <p class="text-gray-600">info@elitescience.com</p>
+                       </div>
+                        <div>
+                           <i class="fas fa-phone-alt text-3xl text-blue-600 mb-3"></i>
+                           <h4 class="font-semibold text-lg">Call Us</h4>
+                           <p class="text-gray-600">+91 98765 43210</p>
+                       </div>
+                   </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Elite Science Institute</h4>
+                    <p class="text-gray-400">Your trusted partner in life science education and career advancement.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul>
+                        <li class="mb-2"><a href="#about" class="hover:text-blue-400">About Us</a></li>
+                        <li class="mb-2"><a href="#courses" class="hover:text-blue-400">Courses</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-blue-400">Admissions</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-blue-400">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Us</h4>
+                    <p class="text-gray-400 mb-2"><i class="fas fa-map-marker-alt mr-2"></i>New Delhi, India</p>
+                    <p class="text-gray-400 mb-2"><i class="fas fa-envelope mr-2"></i>info@elitescience.com</p>
+                    <p class="text-gray-400"><i class="fas fa-phone-alt mr-2"></i>+91 98765 43210</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-2xl hover:text-blue-400"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-2xl hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-2xl hover:text-blue-400"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-2xl hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-gray-500 border-t border-gray-700 mt-8 pt-6">
+                &copy; 2024 Elite Science Institute. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login/Sign Up Modal -->
+    <div id="auth-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 modal-backdrop opacity-0 pointer-events-none">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-md p-8 modal-content transform scale-95">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Login / Sign Up</h2>
+                <button id="close-modal-btn" class="text-gray-500 hover:text-gray-800 text-2xl">&times;</button>
+            </div>
+            
+            <!-- Phone Number Input -->
+            <div id="phone-input-section">
+                <p class="text-gray-600 mb-4">Enter your mobile number to receive an OTP.</p>
+                <div class="flex items-center border-2 border-gray-200 rounded-lg p-2 focus-within:border-blue-500">
+                    <span class="text-gray-500 px-2 border-r border-gray-300">+91</span>
+                    <input type="tel" id="phone-number" placeholder="9876543210" class="w-full p-2 border-none focus:ring-0" maxlength="10">
+                </div>
+                <div id="recaptcha-container" class="mt-4"></div>
+                <button id="send-otp-btn" class="w-full bg-blue-600 text-white py-3 rounded-lg mt-4 font-semibold hover:bg-blue-700 transition duration-300 flex items-center justify-center">
+                    <span id="send-otp-text">Send OTP</span>
+                    <i id="send-otp-spinner" class="fas fa-spinner fa-spin hidden"></i>
+                </button>
+            </div>
+
+            <!-- OTP Input -->
+            <div id="otp-input-section" class="hidden">
+                <p class="text-gray-600 mb-4">An OTP has been sent to <span id="user-phone-display" class="font-semibold"></span>. Please enter it below.</p>
+                <input type="text" id="otp-code" placeholder="Enter 6-digit OTP" class="w-full p-3 border-2 border-gray-200 rounded-lg text-center tracking-widest text-lg focus:border-blue-500 focus:ring-0" maxlength="6">
+                <button id="verify-otp-btn" class="w-full bg-green-500 text-white py-3 rounded-lg mt-4 font-semibold hover:bg-green-600 transition duration-300 flex items-center justify-center">
+                    <span id="verify-otp-text">Verify OTP</span>
+                    <i id="verify-otp-spinner" class="fas fa-spinner fa-spin hidden"></i>
+                </button>
+                 <button id="change-number-btn" class="w-full text-center text-sm text-blue-600 hover:underline mt-4">Change Number</button>
+            </div>
+
+            <div id="auth-message" class="mt-4 text-center text-sm"></div>
+
+        </div>
+    </div>
+
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, RecaptchaVerifier, signInWithPhoneNumber, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyARtCtTno1l7p6LsfaqliTShI8idmfQ0Js",
+            authDomain: "elitescienceinstitutes.firebaseapp.com",
+            projectId: "elitescienceinstitutes",
+            storageBucket: "elitescienceinstitutes.appspot.com",
+            messagingSenderId: "66488336069",
+            appId: "1:66488336069:web:0ee8c4af4d9b1a3c803aac"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // --- DOM Elements ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const loginBtn = document.getElementById('login-btn');
+        const mobileLoginBtn = document.getElementById('mobile-login-btn');
+        const logoutBtn = document.getElementById('logout-btn');
+        const userProfile = document.getElementById('user-profile');
+        
+        const authModal = document.getElementById('auth-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const phoneInputSection = document.getElementById('phone-input-section');
+        const otpInputSection = document.getElementById('otp-input-section');
+        const phoneNumberInput = document.getElementById('phone-number');
+        const userPhoneDisplay = document.getElementById('user-phone-display');
+        const otpInput = document.getElementById('otp-code');
+        const sendOtpBtn = document.getElementById('send-otp-btn');
+        const verifyOtpBtn = document.getElementById('verify-otp-btn');
+        const changeNumberBtn = document.getElementById('change-number-btn');
+        const authMessage = document.getElementById('auth-message');
+        const recaptchaContainer = document.getElementById('recaptcha-container');
+
+        // Spinners and text elements
+        const sendOtpText = document.getElementById('send-otp-text');
+        const sendOtpSpinner = document.getElementById('send-otp-spinner');
+        const verifyOtpText = document.getElementById('verify-otp-text');
+        const verifyOtpSpinner = document.getElementById('verify-otp-spinner');
+
+        // --- UI Logic ---
+
+        // Mobile menu toggle
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Modal open/close functions
+        const openModal = () => {
+            resetModalUI();
+            authModal.classList.remove('opacity-0', 'pointer-events-none');
+            authModal.querySelector('.modal-content').classList.remove('scale-95');
+        };
+        
+        const closeModal = () => {
+            authModal.classList.add('opacity-0', 'pointer-events-none');
+            authModal.querySelector('.modal-content').classList.add('scale-95');
+        };
+
+        loginBtn.addEventListener('click', openModal);
+        mobileLoginBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        authModal.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                closeModal();
+            }
+        });
+
+        const updateUIForLogin = (user) => {
+            if (user) {
+                loginBtn.classList.add('hidden');
+                mobileLoginBtn.textContent = 'Logged In';
+                mobileLoginBtn.disabled = true;
+                userProfile.classList.remove('hidden');
+                userProfile.classList.add('flex');
+            } else {
+                loginBtn.classList.remove('hidden');
+                mobileLoginBtn.textContent = 'Login / Sign Up';
+                mobileLoginBtn.disabled = false;
+                userProfile.classList.add('hidden');
+                userProfile.classList.remove('flex');
+            }
+        };
+
+        // --- Firebase Auth Logic ---
+
+        // Listen for auth state changes
+        onAuthStateChanged(auth, (user) => {
+            updateUIForLogin(user);
+        });
+
+        // Logout
+        logoutBtn.addEventListener('click', () => {
+            signOut(auth).catch((error) => {
+                console.error('Logout Error:', error);
+                showMessage('Failed to logout. Please try again.', 'error');
+            });
+        });
+
+        // Recaptcha Verifier Setup
+        const setupRecaptcha = () => {
+             window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+                'size': 'invisible',
+                'callback': (response) => {
+                    // reCAPTCHA solved, allow signInWithPhoneNumber.
+                    console.log("reCAPTCHA verified");
+                }
+            });
+        }
+        setupRecaptcha();
+
+
+        // Send OTP
+        sendOtpBtn.addEventListener('click', () => {
+            const phoneNumber = phoneNumberInput.value.trim();
+            if (phoneNumber.length !== 10 || !/^\d{10}$/.test(phoneNumber)) {
+                showMessage('Please enter a valid 10-digit mobile number.', 'error');
+                return;
+            }
+            
+            const fullPhoneNumber = `+91${phoneNumber}`;
+            const appVerifier = window.recaptchaVerifier;
+
+            setLoading(sendOtpBtn, sendOtpText, sendOtpSpinner, true);
+            showMessage('Sending OTP...', 'info');
+
+            signInWithPhoneNumber(auth, fullPhoneNumber, appVerifier)
+                .then((confirmationResult) => {
+                    window.confirmationResult = confirmationResult;
+                    showMessage('OTP sent successfully!', 'success');
+                    userPhoneDisplay.textContent = fullPhoneNumber;
+                    phoneInputSection.classList.add('hidden');
+                    otpInputSection.classList.remove('hidden');
+                }).catch((error) => {
+                    console.error("Error sending OTP:", error);
+                    showMessage(`Error: ${error.message}. Please refresh and try again.`, 'error');
+                    // Reset reCAPTCHA
+                    window.recaptchaVerifier.render().then(function(widgetId) {
+                       grecaptcha.reset(widgetId);
+                    });
+                }).finally(() => {
+                    setLoading(sendOtpBtn, sendOtpText, sendOtpSpinner, false);
+                });
+        });
+
+        // Verify OTP
+        verifyOtpBtn.addEventListener('click', () => {
+            const code = otpInput.value.trim();
+            if (code.length !== 6) {
+                showMessage('Please enter the 6-digit OTP.', 'error');
+                return;
+            }
+
+            setLoading(verifyOtpBtn, verifyOtpText, verifyOtpSpinner, true);
+            showMessage('Verifying OTP...', 'info');
+
+            window.confirmationResult.confirm(code).then((result) => {
+                const user = result.user;
+                showMessage('Verification successful! You are logged in.', 'success');
+                setTimeout(() => {
+                    closeModal();
+                }, 1500);
+            }).catch((error) => {
+                console.error("Error verifying OTP:", error);
+                showMessage('Invalid OTP. Please try again.', 'error');
+            }).finally(() => {
+                 setLoading(verifyOtpBtn, verifyOtpText, verifyOtpSpinner, false);
+            });
+        });
+        
+        // Change number button logic
+        changeNumberBtn.addEventListener('click', () => {
+            resetModalUI();
+        });
+        
+        // --- Helper Functions ---
+        function showMessage(msg, type = 'info') {
+            authMessage.textContent = msg;
+            authMessage.className = 'mt-4 text-center text-sm'; // reset classes
+            switch (type) {
+                case 'success':
+                    authMessage.classList.add('text-green-600');
+                    break;
+                case 'error':
+                    authMessage.classList.add('text-red-600');
+                    break;
+                default:
+                    authMessage.classList.add('text-gray-600');
+            }
+        }
+        
+        function setLoading(button, textEl, spinnerEl, isLoading) {
+            if (isLoading) {
+                button.disabled = true;
+                textEl.classList.add('hidden');
+                spinnerEl.classList.remove('hidden');
+            } else {
+                button.disabled = false;
+                textEl.classList.remove('hidden');
+                spinnerEl.classList.add('hidden');
+            }
+        }
+
+        function resetModalUI() {
+            phoneInputSection.classList.remove('hidden');
+            otpInputSection.classList.add('hidden');
+            phoneNumberInput.value = '';
+            otpInput.value = '';
+            showMessage('');
+        }
+
+    </script>
+</body>
+</html>
