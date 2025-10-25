@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merchandise - Elite Science Institute</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="data:image/png;base64,..."> <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        /* COPY ALL YOUR <style>...</style> CSS FROM index.html HERE */
+        body { font-family: 'Inter', sans-serif; ... }
+        .course-card, .news-card { ... }
+        /* ... etc ... */
+    </style>
+</head>
+<body class="bg-slate-50">
 
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        </header>
+
+    <main>
+        <section id="merchandise" class="py-20 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold section-title">Our Merchandise</h2>
+                    <p class="section-subtitle mt-4 max-w-2xl mx-auto text-lg">Show your ESI pride with our official gear.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/400x250/3b82f6/ffffff?text=ESI+T-Shirt" alt="ESI T-Shirt" class="w-full h-64 object-cover">
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">ESI "Future of Science" T-Shirt</h3>
+                            <p class="text-base mb-4 flex-grow">High-quality 100% cotton. Available in S, M, L, XL.</p>
+                            <p class="text-3xl font-bold text-blue-700 mb-6">₹799</p>
+                            <div class="mt-auto space-y-3">
+                                <button class="add-to-cart-btn w-full bg-blue-600 text-white py-3 rounded-lg font-semibold transition duration-300 hover:bg-blue-700 text-lg" 
+                                        data-id="merch-tshirt-1" 
+                                        data-name="ESI T-Shirt" 
+                                        data-price="799"
+                                        data-image="https://placehold.co/100x100/3b82f6/ffffff?text=T-Shirt">
+                                    <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                                </button>
+                                <button class="buy-now-btn w-full bg-amber-500 text-white py-3 rounded-lg font-semibold transition duration-300 hover:bg-amber-600 text-lg" 
+                                        data-id="merch-tshirt-1" 
+                                        data-name="ESI T-Shirt" 
+                                        data-price="799"
+                                        data-image="https://placehold.co/100x100/3b82f6/ffffff?text=T-Shirt">
+                                    Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/400x250/10b981/ffffff?text=ESI+Mug" alt="ESI Mug" class="w-full h-64 object-cover">
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">ESI Ceramic Mug</h3>
+                            <p class="text-base mb-4 flex-grow">15oz (440ml) ceramic mug. Dishwasher and microwave safe.</p>
+                            <p class="text-3xl font-bold text-blue-700 mb-6">₹450</p>
+                            <div class="mt-auto space-y-3">
+                                <button class="add-to-cart-btn w-full bg-blue-600 text-white py-3 rounded-lg font-semibold transition duration-300 hover:bg-blue-700 text-lg" 
+                                        data-id="merch-mug-1" 
+                                        data-name="ESI Ceramic Mug" 
+                                        data-price="450"
+                                        data-image="https://placehold.co/100x100/10b981/ffffff?text=Mug">
+                                    <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                                </button>
+                                <button class="buy-now-btn w-full bg-amber-500 text-white py-3 rounded-lg font-semibold transition duration-300 hover:bg-amber-600 text-lg" 
+                                        data-id="merch-mug-1" 
+                                        data-name="ESI Ceramic Mug" 
+                                        data-price="450"
+                                        data-image="https://placehold.co/100x100/10b981/ffffff?text=Mug">
+                                    Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 py-12">
+        </footer>
+
+    <div id="auth-modal" class="...">
+        </div>
+    
+    <div id="toast-notification" class="...">
+        </div>
+
+    <script type="module" src="app.js"></script>
+    
+    <script type="module">
+        import { addToCart, clearCart } from './cart.js';
+
+        // We need the showToast function, which is in app.js
+        // A good way is to make showToast global in app.js by attaching it to window
+        // In app.js, add: window.showToast = showToast;
+        
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = {
+                    id: button.dataset.id,
+                    name: button.dataset.name,
+                    price: parseFloat(button.dataset.price),
+                    image: button.dataset.image,
+                    quantity: 1
+                };
+                addToCart(item);
+                
+                // Use the global showToast function from app.js
+                if (window.showToast) {
+                    window.showToast(`${item.name} added to cart!`, 'success');
+                }
+            });
+        });
+
+        document.querySelectorAll('.buy-now-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // "Buy Now" = clear cart, add this one item, go to checkout
+                clearCart(); 
+                const item = {
+                    id: button.dataset.id,
+                    name: button.dataset.name,
+                    price: parseFloat(button.dataset.price),
+                    image: button.dataset.image,
+                    quantity: 1
+                };
+                addToCart(item);
+                // Redirect to checkout page
+                window.location.href = 'checkout.html'; 
+            });
+        });
+    </script>
+
+</body>
+</html>
