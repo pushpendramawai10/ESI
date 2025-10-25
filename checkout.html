@@ -1,1 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Checkout - Elite Science Institute</title>
+    </head>
+<body class="bg-slate-50">
 
+    <main>
+        <section id="checkout" class="py-20 md:py-24">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <h2 class="text-3xl md:text-4xl font-bold section-title mb-8">Checkout</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <div class="lg:col-span-2 bg-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-semibold mb-6">Shipping Details</h3>
+                        <form id="shipping-form" class="space-y-4">
+                            <div>
+                                <label for="shipping-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" id="shipping-name" class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm" required>
+                            </div>
+                            <div>
+                                <label for="shipping-email" class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" id="shipping-email" class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm" required>
+                            </div>
+                            <div>
+                                <label for="shipping-phone" class="block text-sm font-medium text-gray-700">Mobile Number</label>
+                                <input type="tel" id="shipping-phone" class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm" required>
+                            </div>
+                            <div>
+                                <label for="shipping-address" class="block text-sm font-medium text-gray-700">Address</label>
+                                <input type="text" id="shipping-address" placeholder="Line 1" class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm" required>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <label for="shipping-city" class="block text-sm font-medium text-gray-700">City</label>
+                                    <input type="text" id="shipping-city" class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm" required>
+                                </div>
+                                <div>
+                                    <label for="shipping-state" class="block text-sm font-medium text-gray-700">State</label>
+                                    <input type="text" id="shipping-state" class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm" required>
+                                </div>
+                                <div>
+                                    <label for="shipping-zip" class="block text-sm font-medium text-gray-700">PIN Code</label>
+                                    <input type="text" id="shipping-zip" class="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm" required>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500">Note: Shipping details are required for merchandise. For digital-only orders, this will be used for billing.</p>
+                        </form>
+                    </div>
+
+                    <div class="lg:col-span-1">
+                        <div class="bg-white rounded-xl shadow-lg p-6 sticky top-28">
+                            <h3 class="text-2xl font-semibold mb-6">Order Summary</h3>
+                            <div id="summary-items-container" class="space-y-4 mb-6 max-h-64 overflow-y-auto pr-2">
+                                </div>
+                            <div class="border-t pt-4 space-y-2">
+                                <div class="flex justify-between">
+                                    <span>Subtotal</span>
+                                    <span id="summary-subtotal">₹0.00</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Shipping</span>
+                                    <span>Free</span>
+                                </div>
+                                <div class="flex justify-between text-xl font-bold mt-4">
+                                    <span>Total</span>
+                                    <span id="summary-total">₹0.00</span>
+                                </div>
+                            </div>
+                            <button id="pay-now-btn" class="mt-6 w-full bg-green-600 text-white py-4 rounded-lg font-semibold transition duration-300 hover:bg-green-700 text-lg">
+                                Pay Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+    
+    <script type="module">
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getCartItems, getCartTotal, clearCart } from './cart.js';
+        
+        // We need showToast from app.js
+        // Make sure to add window.showToast = showToast; in app.js
+        
+        const auth = getAuth();
+        const items = getCartItems();
+        const total = getCartTotal();
+
+        const summaryContainer = document.getElementById('summary-items-container');
+        const summarySubtotal = document.getElementById('summary-subtotal');
+        const summaryTotal = document.getElementById('summary-total');
+        const payNowBtn = document.getElementById('pay-now-btn');
+        const shippingForm = document.getElementById('shipping-form');
+
+        // 1. Populate Order Summary
+        if (items.length === 0) {
+            summaryContainer.innerHTML = '<p class="text-gray-500">Your cart is empty.</p>';
+            payNowBtn.disabled = true;
+        } else {
+            items.forEach(item => {
+                summaryContainer.innerHTML += `
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="font-medium text-slate-700">${item.name} (x${item.quantity})</span>
+                        <span class="text-gray-600">₹${(item.price * item.quantity).toFixed(2)}</span>
+                    </div>
+                `;
+            });
+            summarySubtotal.textContent = `₹${total.toFixed(2)}`;
+            summaryTotal.textContent = `₹${total.toFixed(2)}`;
+        }
+        
+        // 2. Pre-fill form if user is logged in
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                if (user.displayName) document.getElementById('shipping-name').value = user.displayName;
+                if (user.email) document.getElementById('shipping-email').value = user.email;
+                // You don't have phone in Firebase auth, so it remains blank
+            }
+        });
+
+        // 3. Payment Logic
+        payNowBtn.addEventListener('click', () => {
+            const currentUser = auth.currentUser;
+            
+            // Check login
+            if (!currentUser) {
+                window.showToast('Please log in to complete your purchase.', 'error');
+                // You can also programmatically open the login modal here
+                // document.getElementById('login-btn').click(); 
+                return;
+            }
+            
+            // Check email verification
+            if (!currentUser.emailVerified) {
+                window.showToast('Please verify your email before purchasing.', 'error');
+                return;
+            }
+
+            // Check form validity
+            if (!shippingForm.checkValidity()) {
+                shippingForm.reportValidity();
+                window.showToast('Please fill in all required shipping details.', 'error');
+                return;
+            }
+
+            // All checks passed, initiate payment
+            const totalAmount = getCartTotal();
+            const options = {
+                key: "YOUR_KEY_ID_HERE", // Replace with your actual Razorpay Key
+                amount: totalAmount * 100,
+                currency: "INR",
+                name: "Elite Science Institute",
+                description: "Payment for ESI Courses and Merchandise",
+                image: "data:image/png;base64,...", // Your base64 logo
+                handler: function (response) {
+                    console.log(response);
+                    window.showToast(`Payment successful! Payment ID: ${response.razorpay_payment_id}`, 'success');
+                    // Payment was successful!
+                    clearCart();
+                    // Redirect to a "Thank You" page
+                    // window.location.href = 'thank-you.html'; 
+                    
+                    // For now, redirect to home
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 3000);
+                },
+                prefill: {
+                    name: document.getElementById('shipping-name').value,
+                    email: document.getElementById('shipping-email').value,
+                    contact: document.getElementById('shipping-phone').value
+                },
+                notes: {
+                    address: document.getElementById('shipping-address').value,
+                    city: document.getElementById('shipping-city').value,
+                    state: document.getElementById('shipping-state').value,
+                    zip: document.getElementById('shipping-zip').value,
+                    userId: currentUser.uid
+                },
+                theme: {
+                    color: "#1d4ed8"
+                }
+            };
+            
+            const rzp1 = new Razorpay(options);
+            rzp1.on('payment.failed', function (response){
+                console.log(response);
+                window.showToast(`Payment failed: ${response.error.description}`, 'error');
+            });
+            rzp1.open();
+        });
+
+    </script>
+</body>
+</html>
