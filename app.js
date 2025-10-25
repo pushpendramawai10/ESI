@@ -66,10 +66,17 @@
         const toastMessage = document.getElementById('toast-message');
 
         // Tab Elements
-        const phdTabButtons = document.querySelectorAll('.phd-tab-button');
-        const phdTabContents = document.querySelectorAll('.phd-tab-content');
-        const newsTabButtons = document.querySelectorAll('.news-tab-button');
-        const newsTabContents = document.querySelectorAll('.news-tab-content');
+const phdTabButtons = document.querySelectorAll('.phd-tab-button');
+if (phdTabButtons.length > 0) {
+    const phdTabContents = document.querySelectorAll('.phd-tab-content');
+    setupTabs(phdTabButtons, phdTabContents);
+}
+
+const newsTabButtons = document.querySelectorAll('.news-tab-button');
+if (newsTabButtons.length > 0) {
+    const newsTabContents = document.querySelectorAll('.news-tab-content');
+    setupTabs(newsTabButtons, newsTabContents);
+}
 
 
         let authView = 'login'; // Can be 'login', 'signup', or 'reset'
