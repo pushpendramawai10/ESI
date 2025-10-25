@@ -217,7 +217,28 @@ if (newsTabButtons.length > 0) {
                 sessionStorage.removeItem('verificationToastShown');
             }
         };
+// app.js
 
+// --- Cart Badge Update Logic ---
+const cartCountBadge = document.getElementById('cart-count-badge');
+
+function updateCartBadge() {
+    if (cartCountBadge) {
+        const count = getCartCount();
+        cartCountBadge.textContent = count;
+        if (count > 0) {
+            cartCountBadge.classList.remove('hidden');
+        } else {
+            cartCountBadge.classList.add('hidden'); // Hide if cart is empty
+        }
+    }
+}
+
+// Update badge on initial page load
+document.addEventListener('DOMContentLoaded', updateCartBadge);
+
+// Update badge whenever the cart changes
+window.addEventListener('cartUpdated', updateCartBadge);
         // Tab switching logic
         function setupTabs(buttons, contents) {
             buttons.forEach(button => {
