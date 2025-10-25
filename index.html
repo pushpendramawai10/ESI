@@ -88,6 +88,15 @@
                         <i class="fas fa-sign-in-alt"></i>
                         <span>Login / Sign Up</span>
                     </button>
+                    <div class="hidden md:flex items-center space-x-6">
+    <a href="cart.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300 relative">
+        <i class="fas fa-shopping-cart text-xl"></i>
+        <span id="cart-count-badge" class="absolute -top-2 -right-3 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+    </a>
+
+    <button id="login-btn" class="..."></button>
+    <div id="user-profile" class="hidden relative">...</div>
+</div>
                     <div id="user-profile" class="hidden relative">
                         <div id="user-profile-trigger" class="flex flex-col items-center cursor-pointer text-center">
                             <div class="w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center overflow-hidden border-2 border-slate-300" id="avatar-container">
